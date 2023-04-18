@@ -1,0 +1,72 @@
+
+
+                _                                  
+              (`  ).                   _           
+             (     ).              .:(`  )`.       
+    )           _(       '`.          :(   .    )      
+        .=(`(      .   )     .--  `.  (    ) )      
+       ((    (..__.:'-'   .+(   )   ` _`  ) )                 
+`.     `(       ) )       (   .  )     (   )  ._   
+  )      ` __.:'       )     (   (   ))     `-'.-(`  ) 
+)  )  ( )       --'       `- __.'         :(      )) 
+.-'  (_.'          .')                    `(    )  ))
+                  (_  )                     ` __.:'          
+                                        
+--..,___.--,--'`,---..-.--+--.,,-,,..._.--..-._.-a:f--.
+ 
+
+Cartoon Sky Systems
+Documentation
+
+by Victor Groot 01-06-2021
+victorgroot@pm.me
+
+1. Locate particle-systems folder, drag and drop the particle system in the scene. 
+2. Set the transform position Y to the desired height in the scene. Reset X and Z position of the system to be in the center of the scene.
+3. It's ready. Play
+
+
+FAQ
+
+Cloud variation : How to see multiple cloud shapes ? 
+
+The best way to have multiple cloud shape in the sky is to use multiple particle system. 
+Please refer to the particle-systems folder to find a large selection of shapes. 
+For example, use place two differents system at the same transorm position, and you will see both of them at runtime. This will get the illusion of two different kinds of clouds.
+You can put as many different system and shapes as you want, please consider performance cost by doing this.
+
+Bigger clouds : How to increase cloud size ?
+
+For bigger clouds, please use the scale factor in the model settings via Inspector. 
+Select the cloud, for example : cartoon-sky-system/models/clouds/obj-cloud-disc-01
+In the Inspector, Model and set the scale factor to a bigger unit. 
+Alternatively, use the particle system settings "Start Size" in the Inspector by selecting the particle system
+
+Large scene : How to populate large scene ?
+
+If you need to put clouds in a very large scene, you have multiple options. 
+1- Duplicate the particle system and transform the position for covering large areas.
+2- Modify the particle system by selecting the particle system (prefab) and tweaking the following settings :
+Shape>Radius or Shape>Scale  
+
+Custom shapes : How to use other meshes ? 
+
+Select the system, then via the inspector locate in the particle system setting "Renderer", then locate another cloud mesh for the system to use it. 
+
+How to get another cloud behaviour ?
+
+The package provide only three kind of behaviour :
+Fixed altitude, range altitude and organic behaviour. Please refer the particle-systems folder to find these variations.
+If you need another kind of cloud behaviour, please feel free to modify the particle system to fit your needs. 
+You are welcomed to use cloud models with your scripts. 
+
+How to optimize performance and memory use ? 
+
+The best way is to reduce the particle count and other options directly in the particle system via the Inspector. 
+You are welcome to create your own scripts for any performance or needs. Feel free to use all the cloud models available in your custom scripts for your game. 
+
+Shader and Material : How to change cloud material properties ? 
+
+There is no shader included in the package, please feel free to write or find your own shader to change the cloud visual look and light behaviour. 
+All the clouds are unwrapped and prefabs comes with a simple texture based material.
+You can change the material in the particle system settings via the Inspector in the Renderer tab>Material for each system
