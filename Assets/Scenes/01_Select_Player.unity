@@ -1378,7 +1378,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 1052862998}
+  originalItem: {fileID: 601951933}
   CustomAnimation: 
   localPosition: {x: 0.4604355, y: 0, z: -1.4170742}
   localRotation: {x: 0, y: 0.9876884, z: 0, w: 0.15643446}
