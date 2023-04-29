@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: be5ba65508ff1e44781ab618787222d2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cloudGeneratorFx: {fileID: 8581378134080025660, guid: 2b3629fce6da5ae4491ba12130de8483, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
