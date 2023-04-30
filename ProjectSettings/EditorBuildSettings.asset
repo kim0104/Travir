@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/01_Select_Player.unity
+    guid: 0d53f739e1c39f34bb514fddfb9c16d9
   - enabled: 1
     path: Assets/Scenes/Seoul.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 1e4392687524cf44ea9f256d261b23a7
   m_configObjects: {}
