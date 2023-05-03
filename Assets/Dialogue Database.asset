@@ -1565,13 +1565,13 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 964.32404
-        y: 239.57785
+        x: 893.8902
+        y: 192.07587
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 516.8808, y: 64.79143}
-    canvasZoom: 0.58400166
+    canvasScrollPosition: {x: 538.06305, y: 78.83863}
+    canvasZoom: 0.61050063
   syncInfo:
     syncActors: 0
     syncItems: 0
