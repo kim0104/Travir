@@ -722,7 +722,13 @@ namespace PixelCrushers.DialogueSystem
         public bool ConversationHasValidEntry(string title, Transform actor, Transform conversant, int initialDialogueEntryID = -1)
         {
             if (string.IsNullOrEmpty(title)) return false;
+            var prevCurrentActor = currentActor;
+            var prevCurrentConversant = currentConversant;
+            currentActor = actor;
+            currentConversant = conversant;
             var model = new ConversationModel(m_databaseManager.masterDatabase, title, actor, conversant, allowLuaExceptions, isDialogueEntryValid, initialDialogueEntryID, true, true);
+            currentActor = prevCurrentActor;
+            currentConversant = prevCurrentConversant;
             return model.hasValidEntry;
         }
 

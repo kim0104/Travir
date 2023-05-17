@@ -855,7 +855,15 @@ namespace PixelCrushers.DialogueSystem.Celtx
                 var edgeData = edgeObject.Value;
                 var to = (string)edgeData.to;
                 var from = (string)edgeData.from;
-                var conditionId = (edgeData.condition.GetType() == typeof(string)) ? (string)edgeData.condition : null;
+                string conditionId = null;
+                try
+                {
+                    conditionId = (string)edgeData.condition;
+                }
+                catch (System.Exception)
+                {
+                    conditionId = null;
+                }
 
                 DialogueEntry toDialogueObject, fromDialogueObject;
                 if (!dialogueEntryToDict.TryGetValue(to, out toDialogueObject))
@@ -1199,9 +1207,10 @@ namespace PixelCrushers.DialogueSystem.Celtx
                                 if (breakdownEntry != null)
                                 {
                                     var breakdown_attrs = mark.attrs;
+                                    string attrName = breakdown_attrs.name;
                                     string type = (string)breakdown_attrs.type;
                                     string catalog_id = (string)breakdown_attrs.catalog_id;
-                                    AddBreakdownField(currentEntry, breakdownEntry, mark.id, type, catalog_id);
+                                    AddBreakdownField(currentEntry, breakdownEntry, mark.id, type, catalog_id, attrName);
                                 }
                                 break;
                             case "cxmultitagbreakdown":
@@ -1210,6 +1219,7 @@ namespace PixelCrushers.DialogueSystem.Celtx
                                     var multitagbreakdown_attrs = mark.attrs;
                                     foreach (var asset in multitagbreakdown_attrs.assetList)
                                     {
+                                        string attrName = multitagbreakdown_attrs.name;
                                         string breakdown_id = (string)asset;
                                         string multitag_type;
                                         if (catalogTypeByBreakdownId.TryGetValue(breakdown_id, out multitag_type))
@@ -1217,7 +1227,7 @@ namespace PixelCrushers.DialogueSystem.Celtx
                                             string multitag_catalog_id;
                                             if (catalogIdByBreakdownId.TryGetValue(breakdown_id, out multitag_catalog_id))
                                             {
-                                                AddBreakdownField(currentEntry, breakdownEntry, breakdown_id, multitag_type, multitag_catalog_id);
+                                                AddBreakdownField(currentEntry, breakdownEntry, breakdown_id, multitag_type, multitag_catalog_id, attrName);
                                             }
                                         }
                                     }
@@ -1240,7 +1250,7 @@ namespace PixelCrushers.DialogueSystem.Celtx
         }
 
         private void AddBreakdownField(DialogueEntry currentEntry, DialogueEntry breakdownEntry, string breakdown_id,
-            string type, string catalog_id)
+            string type, string catalog_id, string attrName)
         {
             switch (type)
             {
@@ -1254,7 +1264,7 @@ namespace PixelCrushers.DialogueSystem.Celtx
                     AddLocationBreakdownField(breakdownEntry, catalog_id);
                     break;
                 default:
-                    AddCustomBreakdownField(breakdownEntry, breakdown_id);
+                    AddCustomBreakdownField(breakdownEntry, breakdown_id, catalog_id);
                     break;
             }
         }
@@ -1323,18 +1333,30 @@ namespace PixelCrushers.DialogueSystem.Celtx
             }
         }
 
-        private void AddCustomBreakdownField(DialogueEntry currentEntry, string breakdown_id)
+        private void AddCustomBreakdownField(DialogueEntry currentEntry, string breakdown_id, string catalog_id)
         {
-            string customName;
+            string customName = null;
+            var custom = celtxDataObject.subdocuments.catalog.custom;
+            foreach (var customObject in custom)
+            {
+                var customData = customObject.Value;
+                string customId = (string) customData.id;
+                if (string.Equals(customId, catalog_id))
+                {
+                    customName = (string) customData.name;
+                    break;
+                }
+            }
+
             string customType;
-            if (customNameByBreakdownId.TryGetValue(breakdown_id, out customName) &&
-                  customTypeByBreakdownId.TryGetValue(breakdown_id, out customType))
+            if (customName != null && customTypeByBreakdownId.TryGetValue(breakdown_id, out customType))
             {
                 if (string.IsNullOrEmpty(customType)) customType = GetAvailableFieldTitle(currentEntry, "BreakdownCustom");
                 AddToField(currentEntry.fields, customType, customName, FieldType.Text);
             }
 
-            //---Was: (But in JSON multiple breakdown types share the same catalog_id. Bug?)
+            //--- By customer request, we use breakdown name in field instead of custom value.
+            ////---Was: (But in JSON multiple breakdown types share the same catalog_id. Bug?)	
             //var custom = celtxDataObject.subdocuments.catalog.custom;
             //foreach (var customObject in custom)
             //{

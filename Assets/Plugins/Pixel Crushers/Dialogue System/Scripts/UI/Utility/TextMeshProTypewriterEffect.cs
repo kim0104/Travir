@@ -420,12 +420,13 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         public override void Stop()
         {
-            if (isPlaying)
+            var wasPlaying = isPlaying;
+            StopTypewriterCoroutine();
+            if (wasPlaying)
             {
                 onEnd.Invoke();
                 Sequencer.Message(SequencerMessages.Typed);
             }
-            StopTypewriterCoroutine();
             if (textComponent != null) 
             {
                 textComponent.maxVisibleCharacters = textComponent.textInfo.characterCount;

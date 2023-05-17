@@ -491,9 +491,9 @@ namespace PixelCrushers.DialogueSystem
                                 {
                                     sb.AppendFormat("Item[\"{0}\"].{1}=\"{2}\"; ", new System.Object[] { DialogueLua.StringToTableIndex(title), (System.Object)fieldTitle, (System.Object)fields[fieldTitle] });
                                 }
-                                else if (string.Equals(fieldTitle, "Track"))
+                                else if (string.Equals(fieldTitle, "Track") || string.Equals(fieldTitle, "Viewed"))
                                 {
-                                    sb.AppendFormat("Item[\"{0}\"].Track={1}; ", new System.Object[] { DialogueLua.StringToTableIndex(title), fields[fieldTitle].ToString().ToLower() });
+                                    sb.AppendFormat("Item[\"{0}\"].{1}={2}; ", new System.Object[] { DialogueLua.StringToTableIndex(title), fieldTitle, fields[fieldTitle].ToString().ToLower() });
                                 }
                             }
                         }

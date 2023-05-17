@@ -804,7 +804,10 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: USE_ARCWEAVE
+    Standalone: USE_ARCWEAVE
+    WebGL: USE_ARCWEAVE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

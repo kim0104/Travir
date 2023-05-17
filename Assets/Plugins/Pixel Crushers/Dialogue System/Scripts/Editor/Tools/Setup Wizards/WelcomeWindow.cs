@@ -16,6 +16,20 @@ namespace PixelCrushers.DialogueSystem
 
         private const string ShowOnStartEditorPrefsKey = "PixelCrushers.DialogueSystem.WelcomeWindow.ShowOnStart";
 
+        private GUIStyle m_quickButtonGuiStyle = null;
+        private GUIStyle quickButtonGuiStyle
+        {
+            get
+            {
+                if (m_quickButtonGuiStyle == null)
+                {
+                    m_quickButtonGuiStyle = new GUIStyle(GUI.skin.button);
+                    m_quickButtonGuiStyle.alignment = TextAnchor.MiddleCenter;
+                }
+                return m_quickButtonGuiStyle;
+            }
+        }
+
         private static bool showOnStartPrefs
         {
             get { return EditorPrefs.GetBool(ShowOnStartEditorPrefsKey, true); }
@@ -26,7 +40,11 @@ namespace PixelCrushers.DialogueSystem
         public static WelcomeWindow ShowWindow()
         {
             var window = GetWindow<WelcomeWindow>(false, "Welcome");
-            window.minSize = new Vector2(370, 600);
+#if EVALUATION_VERSION || ACADEMIC
+            window.minSize = new Vector2(370, 650);
+#else
+            window.minSize = new Vector2(370, 620);
+#endif
             window.showOnStart = true; // Can't check EditorPrefs when constructing window: showOnStartPrefs;
             return window;
         }
@@ -102,23 +120,23 @@ namespace PixelCrushers.DialogueSystem
                 GUILayout.BeginHorizontal();
                 try
                 {
-                    if (GUILayout.Button(new GUIContent("Quick\nStart\n", "Open Quick Start tutorial"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Quick\nStart", "Open Quick Start tutorial"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/dialogue_system/manual2x/html/quick_start.html");
                     }
-                    if (GUILayout.Button(new GUIContent("\nManual\n", "Open online manual"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Manual", "Open online manual"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/dialogue_system/manual2x/html/");
                     }
-                    if (GUILayout.Button(new GUIContent("\nVideos\n", "Open video tutorial list"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Videos", "Open video tutorial list"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/dialogue-system-tutorials/");
                     }
-                    if (GUILayout.Button(new GUIContent("Scripting\nReference\n", "Open scripting & API reference"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Scripting\nReference", "Open scripting & API reference"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/dialogue_system/manual2x/html/scripting.html");
                     }
-                    if (GUILayout.Button(new GUIContent("\nForum\n", "Go to the Pixel Crushers forum"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Forum", "Go to the Pixel Crushers forum"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/phpbb");
                     }
@@ -132,23 +150,23 @@ namespace PixelCrushers.DialogueSystem
                 GUILayout.BeginHorizontal();
                 try
                 {
-                    if (GUILayout.Button(new GUIContent("Dialogue\nEditor\n", "Open the Dialogue Editor window"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Dialogue\nEditor", "Open the Dialogue Editor window"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         PixelCrushers.DialogueSystem.DialogueEditor.DialogueEditorWindow.OpenDialogueEditorWindow();
                     }
-                    if (GUILayout.Button(new GUIContent("Dialogue\nManager\nWizard", "Configure a Dialogue Manager, the component that coordinates all Dialogue System activity"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Dialogue\nManager\nWizard", "Configure a Dialogue Manager, the component that coordinates all Dialogue System activity"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         DialogueManagerWizard.Init();
                     }
-                    if (GUILayout.Button(new GUIContent("Player\nSetup\nWizard", "Configure a player GameObject to work with the Dialogue System"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Player\nSetup\nWizard", "Configure a player GameObject to work with the Dialogue System"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         PlayerSetupWizard.Init();
                     }
-                    if (GUILayout.Button(new GUIContent("NPC\nSetup\nWizard", "Configure a non-player character or other interactive GameObject to work with the Dialogue System"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("NPC\nSetup\nWizard", "Configure a non-player character or other interactive GameObject to work with the Dialogue System"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         NPCSetupWizard.Init();
                     }
-                    if (GUILayout.Button(new GUIContent("Free\nExtras\n", "Go to the Dialogue System free extras website"), GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button(new GUIContent("Free\nExtras", "Go to the Dialogue System free extras website"), quickButtonGuiStyle, GUILayout.Width(ButtonWidth), GUILayout.Height(3 * EditorGUIUtility.singleLineHeight)))
                     {
                         Application.OpenURL("http://www.pixelcrushers.com/dialogue-system-extras/");
                     }
@@ -256,7 +274,7 @@ namespace PixelCrushers.DialogueSystem
             EditorGUILayout.ToggleLeft(new GUIContent("articy:draft (USE_ARTICY)", "Enable Dialogue System support for articy:draft XML import."), define_USE_ARTICY);
             EditorGUILayout.ToggleLeft(new GUIContent("Aurora Toolset (USE_AURORA)", "Enable Dialogue System support for Aurora (Neverwinter Nights) Toolset import."), define_USE_AURORA);
             EditorGUILayout.ToggleLeft(new GUIContent("Celtx GVR 2 (USE_CELTX)", "Enable Dialogue System support for Celtx GVR 2 JSON import."), define_USE_CELTX);
-            EditorGUILayout.ToggleLeft(new GUIContent("Celtx Gem 3 (USE_CELTX3)", "Enable Dialogue System support for Celtx Gem 3 JSON import."), define_USE_CELTX3);
+            EditorGUILayout.ToggleLeft(new GUIContent("Backlight (Celtx) Gem 3 (USE_CELTX3)", "Enable Dialogue System support for Backlight Gem 3 JSON import."), define_USE_CELTX3);
             EditorGUILayout.ToggleLeft(new GUIContent("Twine (USE_TWINE)", "Enable Dialogue System support for Twine Twison import."), define_USE_TWINE);
             EditorGUILayout.ToggleLeft(new GUIContent("Yarn (USE_YARN)", "Enable Dialogue System support for YarnSpinner import."), define_USE_YARN);
             EditorGUI.EndDisabledGroup();
@@ -272,7 +290,7 @@ namespace PixelCrushers.DialogueSystem
             var new_USE_ARTICY = EditorGUILayout.ToggleLeft(new GUIContent("articy:draft (USE_ARTICY)", "Enable Dialogue System support for articy:draft XML import."), define_USE_ARTICY);
             var new_USE_AURORA = EditorGUILayout.ToggleLeft(new GUIContent("Aurora Toolset (USE_AURORA)", "Enable Dialogue System support for Aurora (Neverwinter Nights) Toolset import."), define_USE_AURORA);
             var new_USE_CELTX = EditorGUILayout.ToggleLeft(new GUIContent("Celtx GVR 2 (USE_CELTX)", "Enable Dialogue System support for Celtx GVR 2 JSON import."), define_USE_CELTX);
-            var new_USE_CELTX3 = EditorGUILayout.ToggleLeft(new GUIContent("Celtx Gem 3 (USE_CELTX3)", "Enable Dialogue System support for Celtx Gem 3 JSON import."), define_USE_CELTX3);
+            var new_USE_CELTX3 = EditorGUILayout.ToggleLeft(new GUIContent("Backlight (Celtx) Gem 3 (USE_CELTX3)", "Enable Dialogue System support for Backlight Gem 3 JSON import."), define_USE_CELTX3);
             var new_USE_TWINE = EditorGUILayout.ToggleLeft(new GUIContent("Twine (USE_TWINE)", "Enable Dialogue System support for Twine Twison import."), define_USE_TWINE);
             var new_USE_YARN = EditorGUILayout.ToggleLeft(new GUIContent("Yarn (USE_YARN)", "Enable Dialogue System support for YarnSpinner import."), define_USE_YARN);
 #endif
@@ -440,6 +458,11 @@ namespace PixelCrushers.DialogueSystem
 
         private void DrawFooter()
         {
+            if (GUI.Button(new Rect(position.width - 200, position.height - 8 - 2 * EditorGUIUtility.singleLineHeight, 190, EditorGUIUtility.singleLineHeight), new GUIContent("Learn About OpenAI Addon", "Visit the Asset Store page for the Addon for OpenAI")))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/ai/dialogue-system-addon-for-openai-249287");
+            }
+
             var newShowOnStart = EditorGUI.ToggleLeft(new Rect(5, position.height - 5 - EditorGUIUtility.singleLineHeight, position.width - (70+150), EditorGUIUtility.singleLineHeight), "Show at start", showOnStart);
             if (newShowOnStart != showOnStart)
             {
