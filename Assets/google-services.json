@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "410267260286",
+    "firebase_url": "https://travir-1dadd-default-rtdb.firebaseio.com",
+    "project_id": "travir-1dadd",
+    "storage_bucket": "travir-1dadd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410267260286:android:7771cab6e4673eed774f2f",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.travir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410267260286-hvq5njd3un5j1rpusbjlf4gkdqkcdkld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Qp-tBq3pBZXfzyJKdj5QODUCjEaVS9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410267260286-hvq5njd3un5j1rpusbjlf4gkdqkcdkld.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "410267260286-tun5taf7h9fp2e8n6hhe12n9uidn730r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DefaultCompany.travir"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
