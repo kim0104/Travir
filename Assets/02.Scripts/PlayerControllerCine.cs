@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerCine : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
@@ -22,9 +22,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         MoveCharacter();
-        RotateCharacter();
+
     }
 
+    public float turnSpeed = 3f;
     private void MoveCharacter()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -33,6 +34,15 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput != 0 || verticalInput != 0)
         {
             animator.SetBool("isRun", true);
+       /*     if (verticalInput < 0)
+            {
+                animator.SetFloat("VerticalDir", -1);
+                
+            }
+            else
+            {
+                animator.SetFloat("VerticalDir", 1);
+            }*/
         }
         else
         {
@@ -42,6 +52,7 @@ public class PlayerController : MonoBehaviour
         // 이동
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
         moveDirection = transform.TransformDirection(moveDirection);
+        transform.Rotate(Vector3.up * horizontalInput * turnSpeed * Time.deltaTime);
         moveDirection *= moveSpeed;
 
         // 점프
@@ -66,35 +77,4 @@ public class PlayerController : MonoBehaviour
         // 캐릭터 컨트롤러에 적용
         characterController.Move(moveDirection * Time.deltaTime);
     }
-
-    public float mouseSensitivity = 0f;
-    public float zoomSensitivity = 0f;
-    public Transform cameraTransform;
-
-    private float yRotation = 0f;
-    private float xRotation = 0f;
-    private float defaultDistance = 0f;
-
-    private void RotateCharacter()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        float mouseScroll = Input.GetAxis("Mouse ScrollWheel");
-
-        yRotation += mouseX;
-        xRotation -= mouseY;
-
-        // 회전 반경 범위 제한
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        defaultDistance -= mouseScroll * zoomSensitivity; // 마우스 휠에 따라 거리 조절
-        defaultDistance = Mathf.Clamp(defaultDistance, 1f, 10f); // 카메라 거리 제한
-
-        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-
-        // 카메라의 회전을 설정하고, 카메라를 캐릭터 뒤로 이동
-        cameraTransform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        cameraTransform.position = transform.position - cameraTransform.forward * defaultDistance;
-    }
 }
-

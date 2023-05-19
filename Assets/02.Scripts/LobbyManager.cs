@@ -19,6 +19,6 @@ public class LobbyManager : MonoBehaviour
     // ¾À ·Îµå
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
