@@ -288,6 +288,10 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             }
             else if (useDisplayNameField)
             {
+                if (!hasDisplayNameField && string.IsNullOrEmpty(actor.LookupValue("Display Name")))
+                {
+                    Field.SetValue(actor.fields, "Display Name", actor.Name);
+                }
                 DrawRevisableTextField(displayNameLabel, actor, null, actor.fields, "Display Name");
                 DrawLocalizedVersions(actor, actor.fields, "Display Name {0}", false, FieldType.Text);
             }
