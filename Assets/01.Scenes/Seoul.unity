@@ -2649,6 +2649,7 @@ Transform:
   - {fileID: 1298410113}
   - {fileID: 850933955}
   - {fileID: 1579152017}
+  - {fileID: 472144497}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14066,6 +14067,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8387188888938314813, guid: 720b741a102b0ec4996a41bd542625af, type: 3}
   m_PrefabInstance: {fileID: 1601610731}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &472144496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472144497}
+  m_Layer: 0
+  m_Name: Npc Camera Angle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &472144497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472144496}
+  m_LocalRotation: {x: 0.008829942, y: 0.7070517, z: 0.008829942, w: -0.7070517}
+  m_LocalPosition: {x: 2.08, y: 0.68, z: 0.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 102101018}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -1.431, y: 270, z: 0}
 --- !u!1 &472274390
 GameObject:
   m_ObjectHideFlags: 0
@@ -53586,7 +53618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718999172095276288, guid: 62665d12b0fd42469b7bfcd720dee828, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.237
       objectReference: {fileID: 0}
     - target: {fileID: 8718999172095276288, guid: 62665d12b0fd42469b7bfcd720dee828, type: 3}
       propertyPath: m_LocalRotation.w

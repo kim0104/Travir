@@ -332,7 +332,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Camera(NpcCamera,,1);
+        value: Camera(Npc Camera Angle,,1);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 1
@@ -2542,8 +2542,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 85.74901, y: 0}
-    canvasZoom: 0.32249922
+    canvasScrollPosition: {x: 956.07556, y: 221.31384}
+    canvasZoom: 0.8714999
   syncInfo:
     syncActors: 0
     syncItems: 0
