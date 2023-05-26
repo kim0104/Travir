@@ -59876,6 +59876,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3416724077242544591, guid: 2f699b5b29407174c956f8769a625bf8, type: 3}
   m_PrefabInstance: {fileID: 2021658326}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2021658328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2603490558796147573, guid: 2f699b5b29407174c956f8769a625bf8, type: 3}
+  m_PrefabInstance: {fileID: 2021658326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!205 &2021658329
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021658328}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &2022866552
 PrefabInstance:
   m_ObjectHideFlags: 0
