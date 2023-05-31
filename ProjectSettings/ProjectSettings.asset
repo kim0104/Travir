@@ -806,7 +806,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: USE_ARCWEAVE
-    Standalone: USE_ARCWEAVE
+    Standalone: USE_ARCWEAVE;VUPLEX_STANDALONE
     WebGL: USE_ARCWEAVE
   additionalCompilerArguments: {}
   platformArchitecture: {}
