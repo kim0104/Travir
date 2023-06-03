@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // bool Å¸ÀÔ º¯¼ö ÇÏ³ª¸¦ ¼±¾ðÇÏ°í
-    // º¯¼ö °ª¿¡ µû¶ó °¢°¢ ´Ù¸¥ Á¶ÀÛ ÇÔ¼ö¸¦ È£ÃâÇÏµµ·Ï ÄÚµå¸¦ ÀÛ¼ºÇÏ½Ã¿À.
+    // bool Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½Û¼ï¿½ï¿½Ï½Ã¿ï¿½.
     
 
     #region Type1
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRun", false);
         }
 
-        // ¸¸¾à¿¡ ÇÃ·¹ÀÌ¾î°¡ µÚ·Î °¡¸é animationÀ» ¿ªÇàÇÏ½Ã¿À.
+        // ï¿½ï¿½ï¿½à¿¡ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.
         if (verticalInput < 0)
         {
             animator.SetFloat("playerMove", -1);
@@ -68,12 +68,12 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("playerMove", 1);
         }
 
-        // ÀÌµ¿
+        // ï¿½Ìµï¿½
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= moveSpeed;
 
-        // Á¡ÇÁ
+        // ï¿½ï¿½ï¿½ï¿½
         if (characterController.isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y = verticalVelocity;
 
-        // Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯¿¡ Àû¿ë
+        // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
@@ -113,15 +113,15 @@ public class PlayerController : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
 
-        // È¸Àü ¹Ý°æ ¹üÀ§ Á¦ÇÑ
+        // È¸ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        defaultDistance -= mouseScroll * zoomSensitivity; // ¸¶¿ì½º ÈÙ¿¡ µû¶ó °Å¸® Á¶Àý
-        defaultDistance = Mathf.Clamp(defaultDistance, 1f, 10f); // Ä«¸Þ¶ó °Å¸® Á¦ÇÑ
+        defaultDistance -= mouseScroll * zoomSensitivity; // ï¿½ï¿½ï¿½ì½º ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+        defaultDistance = Mathf.Clamp(defaultDistance, 1f, 10f); // Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
-        // Ä«¸Þ¶óÀÇ È¸ÀüÀ» ¼³Á¤ÇÏ°í, Ä«¸Þ¶ó¸¦ Ä³¸¯ÅÍ µÚ·Î ÀÌµ¿
+        // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, Ä«ï¿½Þ¶ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½Ìµï¿½
         cameraTransform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         cameraTransform.position = transform.position - cameraTransform.forward * defaultDistance;
     }
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRun", false);
         }
 
-        // ¸¸¾à¿¡ ÇÃ·¹ÀÌ¾î°¡ µÚ·Î °¡¸é animationÀ» ¿ªÇàÇÏ½Ã¿À.
+        // ï¿½ï¿½ï¿½à¿¡ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.
         if (verticalInput < 0)
         {
             animator.SetFloat("playerMove", -1);
@@ -152,16 +152,16 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("playerMove", 1);
         }
 
-        // ÀÌµ¿
+        // ï¿½Ìµï¿½
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= moveSpeed;
 
-        // È¸Àü
+        // È¸ï¿½ï¿½
         transform.Rotate(Vector3.up * horizontalInput * m_movespeed * Time.deltaTime);
-        Debug.Log("rotateComplete");
-        Debug.Log(horizontalInput);
-        // Á¡ÇÁ
+        // Debug.Log("rotateComplete");
+        // Debug.Log(horizontalInput);
+        // ï¿½ï¿½ï¿½ï¿½
         if (characterController.isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y = verticalVelocity;
 
-        // Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯¿¡ Àû¿ë
+        // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         characterController.Move(moveDirection * Time.deltaTime);
     }
     #endregion

@@ -17,7 +17,6 @@ public class CanvasWebviewLoader : MonoBehaviour {
             webViewPrefab = gameObject.AddComponent<CanvasWebViewPrefab>();
         }
         if (link != "") {
-            webViewPrefab.gameObject.SetActive(true);
             webViewPrefab.InitialUrl = link;
         }
     }
