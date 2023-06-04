@@ -26,6 +26,7 @@ public class AddReviewScreen : MonoBehaviour
     private void Start()
     {
         addButton.onClick.AddListener(OnAddButtonClicked);
+        cancelButton.onClick.AddListener(OnCancelButtonClicked);
 
         FirebaseApp app = FirebaseApp.DefaultInstance;
         app.Options.DatabaseUrl = new System.Uri("https://travir-1dadd-default-rtdb.firebaseio.com/");
@@ -69,16 +70,10 @@ public class AddReviewScreen : MonoBehaviour
                 courseDropdown.AddOptions(new List<string> { "태그를 선택하세요" });
                 courseDropdown.value = 0;
 
-                ReviewListScreen reviewListScreenComponent = reviewlistScreen.GetComponent<ReviewListScreen>();
-                if (reviewListScreenComponent != null)
-                {
-                    // 리뷰리스트 업데이트
-                    reviewListScreenComponent.Refresh();
-                }
-                else
-                {
-                    Debug.LogError("ReviewListScreen component not found on reviewlistScreen!");
-                }
+                starDropdown.value = 0;
+                reviewDetailInput.text = string.Empty;
+
+                RefreshList();
 
             }
         }
@@ -106,6 +101,29 @@ public class AddReviewScreen : MonoBehaviour
                 }
             }
             return null;
+        }
+    }
+
+    private void OnCancelButtonClicked()
+    {
+        if (reviewlistScreen != null)
+        {
+            reviewlistScreen.SetActive(true);
+            addreviewScreen.SetActive(false);
+            RefreshList();
+        }
+    }
+
+    private void RefreshList()
+    {
+        ReviewListScreen reviewListScreenComponent = reviewlistScreen.GetComponent<ReviewListScreen>();
+        if (reviewListScreenComponent != null)
+        {
+            reviewListScreenComponent.Refresh();
+        }
+        else
+        {
+            Debug.LogError("ReviewListScreen component not found on reviewlistScreen!");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,25 +17,36 @@ public class HeaderDropdown : MonoBehaviour
     public Button writeButton;
     public Button addButton;
     public Button cancelButton;
+    public Button closeButton;
 
     private void Start()
     {
         writeButton.onClick.AddListener(OnWriteButtonClick);
         addButton.onClick.AddListener(OnAddButtonClick);
         cancelButton.onClick.AddListener(OnCancelButtonClick);
+        closeButton.onClick.AddListener(OnCloseButtonClick);
     }
 
     private void OnWriteButtonClick()
     {
         ResetDropdowns();
+        ResetCourses();
+    }
+
+    private void OnCloseButtonClick()
+    {
+        ResetDropdowns();
+        ResetCourses();
+    }
+
+
+    private void OnCancelButtonClick()
+    {
+        ResetDropdowns();
+        ResetCourses();
     }
 
     private void OnAddButtonClick()
-    {
-        ResetDropdowns();
-    }
-
-    private void OnCancelButtonClick()
     {
         ResetDropdowns();
     }
@@ -55,9 +65,13 @@ public class HeaderDropdown : MonoBehaviour
         seasonDropdown.RefreshShownValue();
         companionDropdown.RefreshShownValue();
 
+    }
+
+    private void ResetCourses()
+    {
         // courseDropdown 초기화
-        /*courseDropdown.ClearOptions();
+        courseDropdown.ClearOptions();
         courseDropdown.AddOptions(new List<string> { "태그를 선택하세요" });
-        courseDropdown.value = 0; // 첫 번째 옵션 선택*/
+        courseDropdown.value = 0;
     }
 }
