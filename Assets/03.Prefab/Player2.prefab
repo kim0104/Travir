@@ -174,9 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 8
-  gravity: 10
+  gravity: 12
   m_movespeed: 50
-  animator: {fileID: 8796191213721449823, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
+  animator: {fileID: 5276333549366037437}
   condition: 0
   mouseSensitivity: 5
   zoomSensitivity: 5
@@ -241,5 +241,10 @@ PrefabInstance:
 --- !u!4 &2938631540117385100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2009460808257605998, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
+  m_PrefabInstance: {fileID: 3687062871498768098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5276333549366037437 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8796191213721449823, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
   m_PrefabInstance: {fileID: 3687062871498768098}
   m_PrefabAsset: {fileID: 0}
