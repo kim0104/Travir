@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 5
-  gravity: 9.8
+  jumpForce: 8
+  gravity: 12
   m_movespeed: 50
   animator: {fileID: 1066159369794683387}
   condition: 0

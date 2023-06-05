@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float jumpForce = 15f;
     public float gravity = 9.8f;
     public float m_movespeed = 50f;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ControlByType();
     }
@@ -142,20 +142,32 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isRun", false);
         }
 
-        // ���࿡ �÷��̾ �ڷ� ���� animation�� �����Ͻÿ�.
-        if (verticalInput < 0)
+        float animationSpeed = 0;
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            animator.SetFloat("playerMove", -1);
+            animationSpeed = 2;
         }
         else
         {
-            animator.SetFloat("playerMove", 1);
+            animationSpeed = 1;
         }
+
+        // ���࿡ �÷��̾ �ڷ� ���� animation�� �����Ͻÿ�.
+        if (verticalInput < 0)
+        {
+            animator.SetFloat("playerMove", -1 * animationSpeed);
+        }
+        else
+        {
+            animator.SetFloat("playerMove", 1 * animationSpeed);
+        }
+
 
         // �̵�
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
         moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= moveSpeed;
+        moveDirection *= moveSpeed * animationSpeed;
 
         // ȸ��
         transform.Rotate(Vector3.up * horizontalInput * m_movespeed * Time.deltaTime);

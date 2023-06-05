@@ -251,7 +251,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 326908225997840477, guid: 1271cdf552e1a49459c9fc6ec7b8be37, type: 3}
+  originalItem: {fileID: 4054170613277775574, guid: 1271cdf552e1a49459c9fc6ec7b8be37, type: 3}
   CustomAnimation: 
   localPosition: {x: 0.4604353, y: 0, z: 1.4170742}
   localRotation: {x: 0, y: 0.15643461, z: 0, w: 0.98768836}
@@ -1249,6 +1249,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114140109322308042, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
+      propertyPath: Items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114140109322308042, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
+      propertyPath: Items.Array.data[0]
+      value: 
+      objectReference: {fileID: 259072782}
+    - target: {fileID: 114140109322308042, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
+      propertyPath: Items.Array.data[1]
+      value: 
+      objectReference: {fileID: 1412109237}
+    - target: {fileID: 114140109322308042, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
+      propertyPath: Items.Array.data[2]
+      value: 
+      objectReference: {fileID: 1792684244}
+    - target: {fileID: 114140109322308042, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
+      propertyPath: Items.Array.data[3]
+      value: 
+      objectReference: {fileID: 1052863000}
     - target: {fileID: 114304377424802936, guid: 9ee1a6b7a3f76194697b6f21c88faac4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
