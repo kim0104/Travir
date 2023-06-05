@@ -66,9 +66,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 5
-  gravity: 9.8
+  jumpForce: 8
+  gravity: 10
+  m_movespeed: 50
   animator: {fileID: 5623758299876995446}
+  condition: 0
   mouseSensitivity: 5
   zoomSensitivity: 5
   cameraTransform: {fileID: 2478128967396305640}
