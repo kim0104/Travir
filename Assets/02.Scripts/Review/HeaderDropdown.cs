@@ -22,7 +22,6 @@ public class HeaderDropdown : MonoBehaviour
     private void Start()
     {
         writeButton.onClick.AddListener(OnWriteButtonClick);
-        addButton.onClick.AddListener(OnAddButtonClick);
         cancelButton.onClick.AddListener(OnCancelButtonClick);
         closeButton.onClick.AddListener(OnCloseButtonClick);
     }
@@ -46,14 +45,8 @@ public class HeaderDropdown : MonoBehaviour
         ResetCourses();
     }
 
-    private void OnAddButtonClick()
-    {
-        ResetDropdowns();
-    }
 
-
-
-    private void ResetDropdowns()
+    public void ResetDropdowns()
     {
         // 태그 초기화
         localDropdown.value = 0;
