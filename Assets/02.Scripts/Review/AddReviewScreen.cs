@@ -19,12 +19,16 @@ public class AddReviewScreen : MonoBehaviour
     public InputField reviewDetailInput;
 
     private DatabaseReference databaseRef;
-    
+
+    private HeaderDropdown headerDropdown;
 
 
 
     private void Start()
     {
+        // HeaderDropdown 인스턴스를 할당
+        headerDropdown = FindObjectOfType<HeaderDropdown>();
+
         addButton.onClick.AddListener(OnAddButtonClicked);
         cancelButton.onClick.AddListener(OnCancelButtonClicked);
 
@@ -73,6 +77,7 @@ public class AddReviewScreen : MonoBehaviour
                 starDropdown.value = 0;
                 reviewDetailInput.text = string.Empty;
 
+                headerDropdown.ResetDropdowns();
                 RefreshList();
 
             }
