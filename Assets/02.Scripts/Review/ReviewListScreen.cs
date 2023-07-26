@@ -1,4 +1,5 @@
-﻿using Firebase;
+﻿using System.Threading.Tasks;
+using Firebase;
 using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class ReviewListScreen : MonoBehaviour
     public Button writeButton;
     public Button refreshButton;
 
+
     public ScrollRect scrollView;
 
     //드롭다운
@@ -23,18 +25,18 @@ public class ReviewListScreen : MonoBehaviour
 
     private DatabaseReference databaseRef;
 
-    private void Start()
+    private async void Start()
     {
         writeButton.onClick.AddListener(OnWriteButtonClicked);
         refreshButton.onClick.AddListener(Refresh);
-        courseDropdown.onValueChanged.AddListener(delegate { FilterTilesByCourse(); });
+        courseDropdown.onValueChanged.AddListener(delegate { FilterTilesByCourse(courseDropdown.options[courseDropdown.value].text); });
 
 
         FirebaseApp app = FirebaseApp.DefaultInstance;
-        app.Options.DatabaseUrl = new System.Uri("https://your-firebase-database-url"); 
+        app.Options.DatabaseUrl = new System.Uri("https://travir-1dadd-default-rtdb.firebaseio.com/");
         databaseRef = FirebaseDatabase.DefaultInstance.RootReference;
 
-        LoadTileValues();
+        await LoadTileValues();
     }
 
     private void OnWriteButtonClicked()
@@ -46,13 +48,22 @@ public class ReviewListScreen : MonoBehaviour
         }
     }
 
-    public void Refresh()
+    public async void Refresh()
     {
         ClearTiles();
-        LoadTileValues();
+        string selectedCourse = courseDropdown.options[courseDropdown.value].text;
+        await LoadTileValues();
+
+        if (selectedCourse != "태그를 선택하세요")
+        {
+            FilterTilesByCourse(selectedCourse);
+        }
+
     }
 
-    private async void LoadTileValues()
+
+
+    public async Task LoadTileValues() //전체 리뷰 목록
     {
         DataSnapshot snapshot = await databaseRef.Child("tour").GetValueAsync();
         foreach (DataSnapshot childSnapshot in snapshot.Children)
@@ -74,6 +85,9 @@ public class ReviewListScreen : MonoBehaviour
             }
         }
     }
+
+
+
 
     private void ClearTiles()
     {
@@ -127,9 +141,8 @@ public class ReviewListScreen : MonoBehaviour
         });
     }
 
-    public void FilterTilesByCourse()
+    public void FilterTilesByCourse(string selectedCourse)
     {
-        string selectedCourse = courseDropdown.options[courseDropdown.value].text;
 
         for (int i = 0; i < tileContainer.childCount; i++)
         {
@@ -140,13 +153,14 @@ public class ReviewListScreen : MonoBehaviour
                 if (buttonText != null)
                 {
                     string buttonTitle = GetTitleFromButtonText(buttonText.text);
+
                     if (buttonTitle == selectedCourse)
                     {
                         tileButton.gameObject.SetActive(true);
                     }
                     else
                     {
-                        tileButton.gameObject.SetActive(false);
+                        tileButton.gameObject.SetActive(false); 
                     }
                 }
             }
@@ -167,3 +181,4 @@ public class ReviewListScreen : MonoBehaviour
 
 
 }
+

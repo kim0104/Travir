@@ -2,9 +2,11 @@
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Database;
-using Firebase.Unity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
+using System.Threading.Tasks;
+using System;
 
 public class CourseDropdownManager : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class CourseDropdownManager : MonoBehaviour
         app.Options.DatabaseUrl = new System.Uri("https://travir-1dadd-default-rtdb.firebaseio.com/");
         databaseRef = FirebaseDatabase.DefaultInstance.RootReference;
 
-        searchButton.onClick.AddListener(SearchButtonClicked);
+        searchButton.onClick.AddListener(async () => await SearchButtonClicked());
 
         InitializeDropdown(courseDropdown);
         OnDropdownValueChanged(courseDropdown);
@@ -48,87 +50,134 @@ public class CourseDropdownManager : MonoBehaviour
         dropdown.RefreshShownValue();
     }
 
-    public void OnDropdownValueChanged(Dropdown dropdown)
+    public async void OnDropdownValueChanged(Dropdown dropdown)
     {
-        string local = localDropdown.options[localDropdown.value].text;
-        string companion = companionDropdown.options[companionDropdown.value].text;
-        string season = seasonDropdown.options[seasonDropdown.value].text;
-        string concept = conceptDropdown.options[conceptDropdown.value].text;
-
-        SearchData(local, companion, season, concept);
-
-        RemoveDuplicateOptions(dropdown);
-    }
-
-    private void SearchButtonClicked()
-    {
-        if (courseDropdown != null)
+        // 검색 버튼을 클릭한 경우에만 동작
+        if (searchButtonClicked)
         {
-            courseDropdown.ClearOptions();
-            courseDropdown.value = 0;
-            courseDropdown.RefreshShownValue();
+            string local = localDropdown.options[localDropdown.value].text;
+            string companion = companionDropdown.options[companionDropdown.value].text;
+            string season = seasonDropdown.options[seasonDropdown.value].text;
+            string concept = conceptDropdown.options[conceptDropdown.value].text;
+
+            SearchData(local, companion, season, concept);
+
+            RemoveDuplicateOptions(dropdown);
         }
-
-        string local = localDropdown.options[localDropdown.value].text;
-        string concept = conceptDropdown.options[conceptDropdown.value].text;
-        string companion = companionDropdown.options[companionDropdown.value].text;
-        string season = seasonDropdown.options[seasonDropdown.value].text;
-
-        SearchData(local, companion, season, concept);
     }
 
-    private void SearchData(string local, string companion = null, string season = null, string concept = null)
+
+
+    private bool searchButtonClicked = false;
+    private async Task SearchButtonClicked()
+    {
+        searchButtonClicked = true;
+
+        try
+        {
+            // 기존 코드
+            string local = localDropdown.options[localDropdown.value].text;
+            string concept = conceptDropdown.options[conceptDropdown.value].text;
+            string companion = companionDropdown.options[companionDropdown.value].text;
+            string season = seasonDropdown.options[seasonDropdown.value].text;
+
+            await SearchData(local, companion, season, concept);
+
+            // Initialize dropdown options
+           // InitializeDropdown(courseDropdown);
+
+            // UI 업데이트
+            StartCoroutine(UpdateDropdownCaptionDelayed());
+            ReviewListScreen reviewListScreen = FindObjectOfType<ReviewListScreen>();
+            if (reviewListScreen != null && reviewListScreen.isActiveAndEnabled)
+            {
+                reviewListScreen.FilterTilesByCourse(courseDropdown.options[courseDropdown.value].text);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Runtime Error: " + e.Message);
+        }
+    }
+
+
+
+    private IEnumerator UpdateDropdownCaptionDelayed()
+    {
+        // 1 프레임 대기
+        yield return null;
+
+        // 첫 번째 옵션의 텍스트를 label에 표시
+        if (courseDropdown.options.Count > 0)
+        {
+            if (courseDropdown.captionText != null)
+            {
+                courseDropdown.captionText.text = courseDropdown.options[0].text;
+                LayoutRebuilder.ForceRebuildLayoutImmediate(courseDropdown.GetComponent<RectTransform>());
+            }
+        }
+        else
+        {
+            if (courseDropdown.captionText != null)
+            {
+                courseDropdown.captionText.text = "";
+                LayoutRebuilder.ForceRebuildLayoutImmediate(courseDropdown.GetComponent<RectTransform>());
+            }
+        }
+    }
+
+
+
+
+    private async Task SearchData(string local, string companion = null, string season = null, string concept = null)
     {
         string path = "tour/" + local;
 
-        databaseRef.Child(path).GetValueAsync().ContinueWith(task =>
+        DataSnapshot snapshot = await databaseRef.Child(path).GetValueAsync();
+        Dictionary<string, object> data = snapshot.Value as Dictionary<string, object>;
+
+        if (data != null)
         {
-            if (task.IsFaulted)
+            List<(int, string)> titleMatches = new List<(int, string)>();
+
+            courseDropdown.ClearOptions();
+
+            foreach (KeyValuePair<string, object> entry in data)
             {
-                Debug.LogError("Failed to retrieve data: " + task.Exception);
-                return;
-            }
-            if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
-                Dictionary<string, object> data = snapshot.Value as Dictionary<string, object>;
+                string pushId = entry.Key;
+                Dictionary<string, object> details = entry.Value as Dictionary<string, object>;
 
-                List<(int, string)> titleMatches = new List<(int, string)>();
+                string title = details.ContainsKey("title") ? details["title"].ToString() : null;
+                Dictionary<string, object> tag = details.ContainsKey("tag") ? details["tag"] as Dictionary<string, object> : null;
 
-                courseDropdown.ClearOptions();
-
-                foreach (KeyValuePair<string, object> entry in data)
+                int matchCount = 0;
+                if (tag != null)
                 {
-                    string pushId = entry.Key;
-                    Dictionary<string, object> details = entry.Value as Dictionary<string, object>;
-
-                    string title = details.ContainsKey("title") ? details["title"].ToString() : null;
-                    Dictionary<string, object> tag = details.ContainsKey("tag") ? details["tag"] as Dictionary<string, object> : null;
-
-                    int matchCount = 0;
-                    if (tag != null)
-                    {
-                        if (string.IsNullOrEmpty(companion) || (tag.ContainsKey("companion") && tag["companion"].ToString() == companion))
-                            matchCount++;
-                        if (string.IsNullOrEmpty(season) || (tag.ContainsKey("season") && tag["season"].ToString() == season))
-                            matchCount++;
-                        if (string.IsNullOrEmpty(concept) || (tag.ContainsKey("concept") && tag["concept"].ToString() == concept))
-                            matchCount++;
-                    }
-
-                    titleMatches.Add((matchCount, title));
+                    if (string.IsNullOrEmpty(companion) || (tag.ContainsKey("companion") && tag["companion"].ToString() == companion))
+                        matchCount++;
+                    if (string.IsNullOrEmpty(season) || (tag.ContainsKey("season") && tag["season"].ToString() == season))
+                        matchCount++;
+                    if (string.IsNullOrEmpty(concept) || (tag.ContainsKey("concept") && tag["concept"].ToString() == concept))
+                        matchCount++;
                 }
 
-                titleMatches.Sort((x, y) => y.Item1.CompareTo(x.Item1));
-
-                foreach (var titleMatch in titleMatches.Take(3))
-                {
-                    courseDropdown.options.Add(new Dropdown.OptionData(titleMatch.Item2));
-                }
-
-                courseDropdown.value = 0;
-                courseDropdown.RefreshShownValue();
+                titleMatches.Add((matchCount, title));
             }
-        });
+
+            titleMatches.Sort((x, y) => y.Item1.CompareTo(x.Item1));
+
+            foreach (var titleMatch in titleMatches.Take(3))
+            {
+                courseDropdown.options.Add(new Dropdown.OptionData(titleMatch.Item2));
+            }
+
+            courseDropdown.value = 0;
+            courseDropdown.RefreshShownValue();
+
+            // 중복 옵션 제거 및 업데이트
+            RemoveDuplicateOptions(courseDropdown);
+        }
+      
     }
+
 }

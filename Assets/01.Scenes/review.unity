@@ -1066,6 +1066,7 @@ MonoBehaviour:
   tiledetailScreen: {fileID: 286001437}
   writeButton: {fileID: 1830618655}
   refreshButton: {fileID: 1062272185}
+  searchButton: {fileID: 2099077989}
   scrollView: {fileID: 1614677473}
   courseDropdown: {fileID: 1274448555}
   tileContainer: {fileID: 908519047}
