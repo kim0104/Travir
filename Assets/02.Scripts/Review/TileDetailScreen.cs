@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 
 public class TileDetailScreen : MonoBehaviour
@@ -22,8 +22,8 @@ public class TileDetailScreen : MonoBehaviour
         detailText.color = Color.black;
 
         detailText.text = "[" + title + "]\n\n" +
-                          "∫∞¡°: " + starValue + "\n" +
-                          "≥ªøÎ: " + reviewValue;
+                          "Î≥ÑÏ†ê: " + starValue + "\n" +
+                          "ÎÇ¥Ïö©: " + reviewValue;
 
         
     }
