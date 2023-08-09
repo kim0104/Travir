@@ -9,6 +9,10 @@ TagManager:
   - Climb
   - Fly
   - Selector
+  - Cube
+  - BusEntry
+  - Ground
+  - DoorEntry
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - WorldSpaceUI
   - 
   - 
   - 
