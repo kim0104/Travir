@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerV2 : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 15f;
@@ -39,9 +39,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Cube")
+        {
+            BusControl.Instance.ToggleDoor();
+        }
+        else if (other.tag == "BusEntry")
+        {
+            transform.parent = BusControl.Instance.gameObject.transform;
+            BusControl.Instance.BusMove();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Cube")
+        {
+            BusControl.Instance.ToggleDoor();
+        }
+    }
+
     // bool Ÿ�� ���� �ϳ��� �����ϰ�
     // ���� ���� ���� ���� �ٸ� ���� �Լ��� ȣ���ϵ��� �ڵ带 �ۼ��Ͻÿ�.
-    
+
 
     #region Type1
     private void MoveCharacter()

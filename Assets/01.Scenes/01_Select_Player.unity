@@ -251,7 +251,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 4054170613277775574, guid: 1271cdf552e1a49459c9fc6ec7b8be37, type: 3}
+  originalItem: {fileID: 5414225880926312505, guid: 1271cdf552e1a49459c9fc6ec7b8be37, type: 3}
   CustomAnimation: 
   localPosition: {x: 0.4604353, y: 0, z: 1.4170742}
   localRotation: {x: 0, y: 0.15643461, z: 0, w: 0.98768836}
@@ -276,7 +276,7 @@ MonoBehaviour:
   OnAmountChanged:
     m_PersistentCalls:
       m_Calls: []
-  EditorShowEvents: 0
+  EditorShowEvents: 1
 --- !u!4 &78091660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2009460808257605998, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
@@ -683,7 +683,7 @@ MonoBehaviour:
   OnAmountChanged:
     m_PersistentCalls:
       m_Calls: []
-  EditorShowEvents: 0
+  EditorShowEvents: 1
 --- !u!4 &259072783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4598182443614863454, guid: e7dbe2d1407d9f54988a6e6ea1ccc404, type: 3}
@@ -1247,7 +1247,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 2002844263654546757, guid: df5d079b438224a47b4513a4cdcc5c1d, type: 3}
+  originalItem: {fileID: 82757007095560817, guid: df5d079b438224a47b4513a4cdcc5c1d, type: 3}
   CustomAnimation: 
   localPosition: {x: 0.4604355, y: 0, z: -1.4170742}
   localRotation: {x: 0, y: 0.9876884, z: 0, w: 0.15643446}
@@ -1766,7 +1766,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 999085821977337108, guid: 663477e16a132cd46908671381704dd2, type: 3}
+  originalItem: {fileID: 5577961927454547520, guid: 663477e16a132cd46908671381704dd2, type: 3}
   CustomAnimation: 
   localPosition: {x: -1.2054354, y: 0, z: 0.87579995}
   localRotation: {x: 0, y: 0.4539904, z: 0, w: -0.8910066}
@@ -1933,7 +1933,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  originalItem: {fileID: 2796873607513363840, guid: e67a160839e44bc4dac2e44726312f07, type: 3}
+  originalItem: {fileID: 8562665901597860248, guid: e67a160839e44bc4dac2e44726312f07, type: 3}
   CustomAnimation: 
   localPosition: {x: -1.2054353, y: 0, z: -0.8758002}
   localRotation: {x: 0, y: 0.8910065, z: 0, w: -0.4539905}

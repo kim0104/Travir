@@ -84,8 +84,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820370843819365634}
-  - component: {fileID: 1820370843819365635}
-  - component: {fileID: 1820370843819365632}
+  - component: {fileID: 3725935441032673239}
+  - component: {fileID: 6985004077879740902}
+  - component: {fileID: 2384242693297100000}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -102,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 1820370843819365644}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 271, y: 13, z: 137}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2779643677314628900}
@@ -110,25 +111,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1820370843819365635
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820370843819365644}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.7
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &1820370843819365632
+--- !u!114 &3725935441032673239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,18 +120,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1820370843819365644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed85cb373873ba64599c90ed27ef6669, type: 3}
+  m_Script: {fileID: 11500000, guid: 2090fd7e0e7abf34493fd2b2a6d37fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 8
-  gravity: 12
-  m_movespeed: 50
+  speed: 5
+  rotationSpeed: 200
+  jumpForce: 4
   animator: {fileID: 1066159369794683387}
-  condition: 0
-  mouseSensitivity: 5
-  zoomSensitivity: 5
-  cameraTransform: {fileID: 2372513781241160353}
+--- !u!54 &6985004077879740902
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820370843819365644}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &2384242693297100000
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820370843819365644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &3975769095115764867
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1695750323147422849, guid: e7dbe2d1407d9f54988a6e6ea1ccc404, type: 3}
       propertyPath: m_CullingMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3790859070566193892, guid: e7dbe2d1407d9f54988a6e6ea1ccc404, type: 3}
       propertyPath: m_Name
