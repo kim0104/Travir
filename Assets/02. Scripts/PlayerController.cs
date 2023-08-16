@@ -95,6 +95,9 @@ public class PlayerController : MonoBehaviour
             case ("Cube"):
                 BusControl.Instance.ToggleDoor();
                 break;
+            case ("Jeju"):
+                SceneManager.LoadScene("Jeju");
+                break;
             default:
                 break;
         }

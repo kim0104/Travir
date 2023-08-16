@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Seoul.unity
     guid: 1e4392687524cf44ea9f256d261b23a7
+  - enabled: 1
+    path: Assets/01.Scenes/Jeju.unity
+    guid: f44686ed8faef45beac79187bc35c817
   m_configObjects: {}
