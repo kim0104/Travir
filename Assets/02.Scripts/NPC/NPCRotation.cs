@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class NPCRotation : MonoBehaviour
 {
+    private PlayerController playerController;
 
-    public Transform targetObject;
+    void Awake()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
 
     public void RotateNPC(float angle)
     {
@@ -12,9 +17,21 @@ public class NPCRotation : MonoBehaviour
         transform.eulerAngles = currentRotation;
     }
 
-    public void SetNPCPosition()
+    public void SetPosition()
     {
-        Vector3 newPosition = new Vector3(271f, 13f, 137f); // 변경하고자 하는 새로운 위치 좌표
-        targetObject.position = newPosition;
+        // Vector3 newPosition = new Vector3(271f, 13f, 137f); // 변경하고자 하는 새로운 위치 좌표
+        if (playerController != null)
+        {
+            playerController.enabled = false; 
+        }
+    }
+
+    public void ResetPosition()
+    {
+        if (playerController != null)
+        {
+
+            playerController.enabled = true; 
+        }
     }
 }
