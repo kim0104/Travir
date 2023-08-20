@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 BusControl.Instance.ToggleDoor();
                 break;
             case ("Jeju"):
+                Data.spawnType = Data.SpawnType.Jeju;
                 SceneManager.LoadScene("Jeju");
                 break;
             default:
