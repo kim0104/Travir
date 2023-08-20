@@ -8,7 +8,7 @@ public static class Data
     public enum SpawnType
     {
         Basic,
-        Subway,
-        School
+        Seoul,
+        Jeju
     }
 }
