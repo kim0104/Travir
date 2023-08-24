@@ -1897,7 +1897,7 @@ PrefabInstance:
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.dialogueUI
       value: 
-      objectReference: {fileID: 1185022956723936, guid: 66be050a8c40745f09b8b83eeb68f29e, type: 3}
+      objectReference: {fileID: 1185022956723936, guid: 2f90ae08b2d324292890055e6a24cb7c, type: 3}
     - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: displaySettings.cameraSettings.cameraAngles
       value: 
