@@ -13,6 +13,7 @@ TagManager:
   - BusEntry
   - Ground
   - DoorEntry
+  - Jeju
   layers:
   - Default
   - TransparentFX

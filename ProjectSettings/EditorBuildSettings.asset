@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/01.Scenes/01_Select_Player.unity
     guid: 0d53f739e1c39f34bb514fddfb9c16d9
   - enabled: 1
-    path: Assets/01.Scenes/Demonstration.unity
-    guid: 4a4737a16ae090e4c82b23aafe2ffe27
-  - enabled: 1
     path: Assets/01.Scenes/Seoul.unity
     guid: 1e4392687524cf44ea9f256d261b23a7
+  - enabled: 1
+    path: Assets/01.Scenes/Jeju.unity
+    guid: f44686ed8faef45beac79187bc35c817
   m_configObjects: {}

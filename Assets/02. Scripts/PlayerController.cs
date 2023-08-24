@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
-    public float speed = 5.0f; // ÀÌµ¿ ¼Óµµ
-    public float rotationSpeed = 200.0f; // È¸Àü ¼Óµµ
-    public float jumpForce = 2.0f; // Á¡ÇÁ Èû
+    public float speed = 5.0f; // ï¿½Ìµï¿½ ï¿½Óµï¿½
+    public float rotationSpeed = 200.0f; // È¸ï¿½ï¿½ ï¿½Óµï¿½
+    public float jumpForce = 2.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     public Animator animator;
 
-    private bool isJumping = false; // Á¡ÇÁ ÁßÀÎÁö Ã¼Å©
+    private bool isJumping = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
     private Rigidbody rb;
 
     void Start()
@@ -21,13 +22,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // ¾ÕµÚ ÀÌµ¿Àº w, s ¶Ç´Â ¹æÇâÅ° À§¾Æ·¡
+        if (!photonView.IsMine) return;
+        // ï¿½Õµï¿½ ï¿½Ìµï¿½ï¿½ï¿½ w, s ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ï¿½Æ·ï¿½
         float moveVertical = Input.GetAxis("Vertical");
 
-        // ÁÂ¿ì È¸ÀüÀº a, d ¶Ç´Â ¹æÇâÅ° ÁÂ¿ì
+        // ï¿½Â¿ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ a, d ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½Â¿ï¿½
         float rotateHorizontal = Input.GetAxis("Horizontal");
 
-        #region ¾Ö´Ï¸ÞÀÌ¼Ç ÄÚµå
+        #region ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Úµï¿½
         float animationSpeed = 0;
 
        
@@ -64,15 +66,15 @@ public class PlayerController : MonoBehaviour
         
         #endregion
 
-        // ÀÌµ¿
+        // ï¿½Ìµï¿½
         Vector3 movement = transform.forward * moveVertical * speed * animationSpeed;
         rb.MovePosition(rb.position + movement * Time.deltaTime);
 
-        // È¸Àü
+        // È¸ï¿½ï¿½
         Vector3 rotation = new Vector3(0, rotateHorizontal, 0) * rotationSpeed;
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation * Time.deltaTime));
 
-        // Á¡ÇÁ - Á¡ÇÁ ÁßÀÌ ¾Æ´Ò ¶§, ½ºÆäÀÌ½º¹Ù¸¦ ´©¸£¸é Á¡ÇÁ
+        // ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode.Impulse);
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Á¡ÇÁ ÈÄ ´Ù½Ã ¶¥¿¡ ´ê¾Ò´ÂÁö Ã¼Å©
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò´ï¿½ï¿½ï¿½ Ã¼Å©
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
@@ -95,6 +97,10 @@ public class PlayerController : MonoBehaviour
             case ("Cube"):
                 BusControl.Instance.ToggleDoor();
                 break;
+            case ("Jeju"):
+                Data.spawnType = Data.SpawnType.Jeju;
+                SceneManager.LoadScene("Jeju");
+                break;
             default:
                 break;
         }
@@ -102,12 +108,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Á¤·ùÀå¿¡ µµÂøÇßÀ» ¶§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if(other.tag == "DoorEntry" && !BusControl.Instance.isMoving)
         {
             BusControl.Instance.ToggleDoor();
         }
-        // ¿Ã¶óÅ» ¶§
+        // ï¿½Ã¶ï¿½Å» ï¿½ï¿½
         else if(other.tag == "BusEntry" && !BusControl.Instance.isMoving)
         {
             transform.parent = BusControl.Instance.gameObject.transform;
@@ -118,12 +124,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Á¤·ùÀå¿¡¼­ ¹þ¾î³µÀ» ¶§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ ï¿½ï¿½
         if (other.tag == "DoorEntry")
         {
             BusControl.Instance.ToggleDoor();
         }
-        // ¹ö½º¿¡¼­ ³»¸± ¶§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         else if (other.tag == "BusEntry" && !BusControl.Instance.isMoving)
         {
             if (transform.parent != null)

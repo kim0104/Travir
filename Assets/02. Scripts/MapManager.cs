@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    public Transform spawnTr;
-    public Transform subwayTr;
+    public Transform seoulTr;
+    public Transform jejuTr;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject go = FindAnyObjectByType<CharacterController>().gameObject;
+        GameObject go = FindAnyObjectByType<PlayerController>().gameObject;
         switch (Data.spawnType)
         {
-            case Data.SpawnType.Basic:
-                go.transform.position = spawnTr.position;
+            case Data.SpawnType.Seoul:
+                go.transform.position = seoulTr.position;
                 break;
-            case Data.SpawnType.Subway:
-                go.transform.position = subwayTr.position;
+            case Data.SpawnType.Jeju:
+                go.transform.position = jejuTr.position;
                 break;
             default:
-                go.transform.position = spawnTr.position;
                 break;
         }
     }
