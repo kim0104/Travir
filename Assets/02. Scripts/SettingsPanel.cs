@@ -94,6 +94,8 @@ public class SettingsPanel : MonoBehaviour
     // Called when the quit button is clicked
     void OnQuitClick()
     {
+        Debug.Log("Quit button clicked!"); // 디버그 로그 추가
+
         // Quit the application
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
