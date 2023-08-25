@@ -10,10 +10,19 @@ using Photon.Realtime;
 public class MenuPanel : MonoBehaviour
 {
     public GameObject settingsPanel; // Settings Panel GameObject
+    public GameObject mapPanel; // Map Panel GameObject
     public Slider volumeSlider; // Volume Slider
     public Button quitButton; // Quit Button
     public Button mapButton; // map Button
-    public TMP_Dropdown sceneDropdown; // ScenechangeDropdwon
+    public Button gimpoButton;
+    public Button lotteworldButton;
+    public Button lottetowerButton;
+    public Button namsanButton;
+    public Button gwanghwaButton;
+    public Button worldcupButton;
+    public Button settingscloseButton; // Settings Panel close
+    public Button mapcloseButton; // Map Panel close
+    public Button returnButton; // return to Settings Panel
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +36,30 @@ public class MenuPanel : MonoBehaviour
         // Add listener for map button
         mapButton.onClick.AddListener(delegate { OnMapClick(); });
 
-        // Add listener for resolution dropdown
-        sceneDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+        gimpoButton.onClick.AddListener(delegate { OnGimpoClick(); });
+
+        lotteworldButton.onClick.AddListener(delegate { OnLotteworldClick(); });
+
+        lottetowerButton.onClick.AddListener(delegate { OnLottetowerClick(); });
+
+        namsanButton.onClick.AddListener(delegate { OnNamsanClick(); });
+
+        gwanghwaButton.onClick.AddListener(delegate { OnGwanghwaClick(); });
+
+        worldcupButton.onClick.AddListener(delegate { OnWorldCupClick(); });
+
+        settingscloseButton.onClick.AddListener(delegate { OnSettigsCloseClick(); });
+
+        mapcloseButton.onClick.AddListener(delegate { OnMapCloseClick(); });
+
+        returnButton.onClick.AddListener(delegate { OnReturnClick(); });
 
         // Hide the settings panel at start
         settingsPanel.SetActive(false);
+        mapPanel.SetActive(false);
+
+        
+
     }
 
     // Update is called once per frame
@@ -65,19 +93,78 @@ public class MenuPanel : MonoBehaviour
     void OnMapClick()
     {
         //Map Panel change
+        settingsPanel.SetActive(false);
+        mapPanel.SetActive(true);
 
     }
 
-    // Called when the resolution dropdown value is changed
-    private void OnDropdownValueChanged(int index)
+
+    public SeoulMapManager seoulMapManager; // SeoulMapManager 참조
+    void OnGimpoClick()
     {
-        // Get the selected scene name from the Dropdown
-        string selectedSceneName = sceneDropdown.options[index].text;
-
-        // Load the selected scene
-
-        
-        SceneManager.LoadScene(selectedSceneName);
+        Data.spawnType = Data.SpawnType.Gimpo;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false);
     }
+
+    void OnLotteworldClick()
+    {
+        Data.spawnType = Data.SpawnType.Lotteworld;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false); ;
+    }
+
+    void OnLottetowerClick()
+    {
+        Data.spawnType = Data.SpawnType.Lottetower;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false);
+    }
+
+    void OnNamsanClick()
+    {
+        Data.spawnType = Data.SpawnType.Namsan;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false);
+    }
+
+    void OnGwanghwaClick()
+    {
+        Data.spawnType = Data.SpawnType.Gwanghwa;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false);
+    }
+
+    void OnWorldCupClick()
+    {
+        Data.spawnType = Data.SpawnType.Worldcup;
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 태그를 사용하여 플레이어 객체를 찾습니다.
+        seoulMapManager.ChangePlayerPosition(player);
+        mapPanel.SetActive(false);
+    }
+
+
+    void OnSettigsCloseClick()
+    {
+        settingsPanel.SetActive(false);
+    }
+
+    void OnMapCloseClick()
+    {
+        mapPanel.SetActive(false);
+    }
+
+    void OnReturnClick()
+    {
+        mapPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+
+    
 }
 
