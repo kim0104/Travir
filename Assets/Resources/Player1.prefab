@@ -146,6 +146,7 @@ MonoBehaviour:
   rotationSpeed: 200
   jumpForce: 4
   animator: {fileID: 1066159369794683387}
+  seoulMapManager: {fileID: 0}
 --- !u!54 &6985004077879740902
 Rigidbody:
   m_ObjectHideFlags: 0

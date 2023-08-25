@@ -9,6 +9,12 @@ public static class Data
     {
         Basic,
         Seoul,
-        Jeju
+        Jeju,
+        Gimpo,
+        Lotteworld,
+        Lottetower,
+        Namsan,
+        Gwanghwa,
+        Worldcup
     }
 }
