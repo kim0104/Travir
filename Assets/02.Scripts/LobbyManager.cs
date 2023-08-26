@@ -85,23 +85,65 @@ public class LobbyManager :  MonoBehaviourPunCallbacks
     }
 
     // 룸에 참가 완료된 경우 자동 실행
+    /*    public override void OnJoinedRoom()
+        {
+            // 접속 상태 표시
+            Debug.Log("방 참가 성공");
+            // 모든 룸 참가자들이 Main 씬을 로드하게 함
+            PhotonNetwork.LoadLevel(1);
+        }*/
+    // LobbyManager.cs의 OnJoinedRoom 메서드 내에 추가
     public override void OnJoinedRoom()
     {
-        // 접속 상태 표시
-        Debug.Log("방 참가 성공");
+        base.OnJoinedRoom();
+        ChatManager chatManager = FindObjectOfType<ChatManager>();
+        if (chatManager != null)
+        {
+            chatManager.gameObject.SetActive(true);
+        }
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
         PhotonNetwork.LoadLevel(1);
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log(newPlayer.NickName + "님이 입장하셨습니다.");
     }
 
     // public void LoadNextScene()
     // {
     //     SceneManager.LoadScene(2);
     // }
+
+    // LobbyManager.cs의 OnPlayerEnteredRoom와 OnPlayerLeftRoom 메서드 내에 추가
+
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        ChatManager chatManager = FindObjectOfType<ChatManager>();
+        if (chatManager != null)
+        {
+            chatManager.OnPlayerEnteredRoom(newPlayer);
+        }
+        else
+        {
+            Debug.LogWarning("ChatManager not found.");
+        }
+
+        Debug.Log(newPlayer.NickName + "님이 입장하셨습니다.");
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        ChatManager chatManager = FindObjectOfType<ChatManager>();
+        if (chatManager != null)
+        {
+            chatManager.OnPlayerLeftRoom(otherPlayer);
+        }
+        else
+        {
+            Debug.LogWarning("ChatManager not found.");
+        }
+    }
+
+
 }
 
 
