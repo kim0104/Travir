@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Collections;
 using System;
 using UnityEngine;
 using Firebase;
 using Firebase.Database;
-using Firebase.Unity;
+using Firebase.Extensions;
 using PixelCrushers.DialogueSystem;
 
 public class TourDialougue : MonoBehaviour
@@ -13,6 +14,12 @@ public class TourDialougue : MonoBehaviour
 
     public void OnExecute() 
     {
+        // GameObject가 활성화 되어있는지 확인
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+        }
+
         string localTag = DialogueLua.GetVariable("local").AsString;
         string conceptTag = DialogueLua.GetVariable("concept").AsString;
         string companionTag = DialogueLua.GetVariable("companion").AsString;
@@ -21,12 +28,13 @@ public class TourDialougue : MonoBehaviour
         FirebaseApp app = FirebaseApp.DefaultInstance;
         app.Options.DatabaseUrl = new System.Uri("https://travir-1dadd-default-rtdb.firebaseio.com/");
         databaseRef = FirebaseDatabase.DefaultInstance.RootReference;  
-        dialogueSystemController =  FindObjectOfType<DialogueSystemController>();
+        dialogueSystemController = FindObjectOfType<DialogueSystemController>();
 
         // 대화를 일시 중지
         PauseDialogue();
-        SearchData(localTag, companionTag, seasonTag, conceptTag); 
-        ResumeDialogue();          
+
+        // Coroutine으로 데이터 검색 시작
+        StartCoroutine(SearchData(localTag, companionTag, seasonTag, conceptTag));
     }
 
     private void PauseDialogue()
@@ -36,7 +44,6 @@ public class TourDialougue : MonoBehaviour
             dialogueSystemController.Pause();
         }
     }
-    
 
     private void ResumeDialogue()
     {
@@ -46,59 +53,57 @@ public class TourDialougue : MonoBehaviour
         }
     }
 
-    private void SearchData(string local, string companion = null, string season = null, string concept = null)
+    private IEnumerator SearchData(string local, string companion = null, string season = null, string concept = null)
     {
         string path = "tour/" + local;
+        var task = databaseRef.Child(path).GetValueAsync();
 
-        databaseRef.Child(path).GetValueAsync().ContinueWith(task =>
+        yield return new WaitUntil(() => task.IsCompleted);
+
+        if (task.IsFaulted)
         {
-            if (task.IsFaulted)
+            Debug.LogError("Failed to retrieve data: " + task.Exception);
+            yield break;
+        }
+
+        DataSnapshot snapshot = task.Result;
+        Dictionary<string, object> data = (Dictionary<string, object>)snapshot.Value;
+        List<(int, string, string)> matchCountTitleAndURLs = new List<(int, string, string)>();
+
+        foreach (KeyValuePair<string, object> entry in data)
+        {
+            string pushId = entry.Key;
+            Dictionary<string, object> details = (Dictionary<string, object>)entry.Value;
+            string title = details.ContainsKey("title") ? (string)details["title"] : null;
+            string url = details.ContainsKey("url") ? (string)details["url"] : null;
+            Dictionary<string, object> tag = details.ContainsKey("tag") ? (Dictionary<string, object>)details["tag"] : null;
+
+            int matchCount = 0;
+            if (tag != null)
             {
-                Debug.LogError("Failed to retrieve data: " + task.Exception);
-                return;
+                if (companion == null || tag.ContainsKey("companion") && tag["companion"].ToString() == companion)
+                    matchCount++;
+                if (season == null || tag.ContainsKey("season") && tag["season"].ToString() == season)
+                    matchCount++;
+                if (concept == null || tag.ContainsKey("concept") && tag["concept"].ToString() == concept)
+                    matchCount++;
             }
 
-            DataSnapshot snapshot = task.Result;
-            Dictionary<string, object> data = (Dictionary<string, object>)snapshot.Value;
+            matchCountTitleAndURLs.Add((matchCount, title, url));
+        }
 
-            List<(int, string, string)> matchCountTitleAndURLs = new List<(int, string, string)>();
+        matchCountTitleAndURLs.Sort((x, y) => y.Item1.CompareTo(x.Item1));
+        for (int i = 0; i < 3 && i < matchCountTitleAndURLs.Count; i++)
+        {
+            Debug.Log("Title: " + matchCountTitleAndURLs[i].Item2);
+            Debug.Log("URL: " + matchCountTitleAndURLs[i].Item3);
+            DialogueLua.SetVariable("result"+i, matchCountTitleAndURLs[i].Item2);
+            DialogueLua.SetVariable("link"+i, matchCountTitleAndURLs[i].Item3);
+        }
 
-            foreach (KeyValuePair<string, object> entry in data)
-            {
-                string pushId = entry.Key;
-                Dictionary<string, object> details = (Dictionary<string, object>)entry.Value;
-
-                string title = details.ContainsKey("title") ? (string)details["title"] : null;
-                string url = details.ContainsKey("url") ? (string)details["url"] : null;
-                Dictionary<string, object> tag = details.ContainsKey("tag") ? (Dictionary<string, object>)details["tag"] : null;
-
-                int matchCount = 0;
-                if (tag != null)
-                {
-                    if (companion == null || tag.ContainsKey("companion") && tag["companion"].ToString() == companion)
-                        matchCount++;
-                    if (season == null || tag.ContainsKey("season") && tag["season"].ToString() == season)
-                        matchCount++;
-                    if (concept == null || tag.ContainsKey("concept") && tag["concept"].ToString() == concept)
-                        matchCount++;
-                }
-
-                matchCountTitleAndURLs.Add((matchCount, title, url));
-            }
- 
-            matchCountTitleAndURLs.Sort((x, y) => y.Item1.CompareTo(x.Item1));
-
-            for (int i = 0; i < 3 && i < matchCountTitleAndURLs.Count; i++)
-            {
-                Debug.Log("Title: " + matchCountTitleAndURLs[i].Item2);
-                Debug.Log("URL: " + matchCountTitleAndURLs[i].Item3);
-                DialogueLua.SetVariable("result"+i, matchCountTitleAndURLs[i].Item2);
-                DialogueLua.SetVariable("link"+i, matchCountTitleAndURLs[i].Item3);
-            }
-        });
+        ResumeDialogue(); 
     }
 }
-
 
 //     private void SearchData(string local, string companion = null, string season = null, string concept = null)
 //     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun; 
 
 public class SeoulMapManager : MonoBehaviour
 {
@@ -19,28 +20,33 @@ public class SeoulMapManager : MonoBehaviour
 
     public void ChangePlayerPosition(GameObject player)
     {
-        switch (Data.spawnType)
+        PhotonView photonView = player.GetComponent<PhotonView>();
+
+        if (photonView != null && photonView.IsMine)
         {
-            case Data.SpawnType.Gimpo:
-                player.transform.position = gimpoTr.position;
-                break;         
-            case Data.SpawnType.Lotteworld:
-                transform.position = lotteworldTr.position;
-                break;
-            case Data.SpawnType.Lottetower:
-                transform.position = lottetowerTr.position;
-                break;
-            case Data.SpawnType.Namsan:
-                transform.position = namsanTr.position;
-                break;
-            case Data.SpawnType.Gwanghwa:
-                transform.position = gwanghwaTr.position;
-                break;
-            case Data.SpawnType.Worldcup:
-                transform.position = worldcupTr.position;
-                break;
-            default:
-                break;
+            switch (Data.spawnType)
+            {
+                case Data.SpawnType.Gimpo:
+                    player.transform.position = gimpoTr.position;
+                    break;         
+                case Data.SpawnType.Lotteworld:
+                    player.transform.position = lotteworldTr.position;
+                    break;
+                case Data.SpawnType.Lottetower:
+                    player.transform.position = lottetowerTr.position;
+                    break;
+                case Data.SpawnType.Namsan:
+                    player.transform.position = namsanTr.position;
+                    break;
+                case Data.SpawnType.Gwanghwa:
+                    player.transform.position = gwanghwaTr.position;
+                    break;
+                case Data.SpawnType.Worldcup:
+                    player.transform.position = worldcupTr.position;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
