@@ -1,14 +1,16 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class NPCRotation : MonoBehaviour
+public class NPCRotation : MonoBehaviourPunCallbacks
 {
     private PlayerController playerController;
+    public Canvas myCanvas;
 
+    // Start is called before the first frame update
     void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
     }
-
 
     public void RotateNPC(float angle)
     {
@@ -30,8 +32,19 @@ public class NPCRotation : MonoBehaviour
     {
         if (playerController != null)
         {
-
             playerController.enabled = true; 
         }
     }
+
+    public void StartConversation()
+    {
+        myCanvas.enabled = false;
+    }
+
+    public void EndConversation()
+    {
+        myCanvas.enabled = true;
+    }
+
 }
+

@@ -218,6 +218,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6032590558409369618}
+  - {fileID: 6568912131300020664}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -381,7 +382,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5414225881121145791}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -430,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 5414225881121145789}
+  nameTag: {fileID: 692284080888511799}
 --- !u!1 &7299407620461033910
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +533,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
+--- !u!1 &2563454963416911681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1200448281146280916, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}
+  m_PrefabInstance: {fileID: 3691792727128573077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6568912131300020664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563454963416911681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isRun
+  - Type: 1
+    SynchronizeType: 0
+    Name: playerMove
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalk
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!4 &2943357552816887291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2009460808257605998, guid: b3d7b8267f0ca064aae1e6937185292f, type: 3}

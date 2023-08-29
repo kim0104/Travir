@@ -99,7 +99,11 @@ public class PlayerController : MonoBehaviourPun
                 break;
             case ("Jeju"):
                 Data.spawnType = Data.SpawnType.Jeju;
-                SceneManager.LoadScene("Jeju");
+                PhotonNetwork.LoadLevel(2);
+                break;
+            case ("Seoul"):
+                Data.spawnType = Data.SpawnType.Seoul;
+                PhotonNetwork.LoadLevel(1);
                 break;
             default:
                 break;

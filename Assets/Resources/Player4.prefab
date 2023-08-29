@@ -183,7 +183,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8562665901356366366}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 8562665901356366364}
+  nameTag: {fileID: 8223213781228774484}
 --- !u!1 &8562665901597860248
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +340,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5225277434990971494}
+  - {fileID: 7789103297091438271}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -524,6 +526,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3237933159676494552, guid: 5dc2d934214166e4cb82bb890758b72a, type: 3}
   m_PrefabInstance: {fileID: 3164685464286854652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &887098113144219038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2856587976455592034, guid: 5dc2d934214166e4cb82bb890758b72a, type: 3}
+  m_PrefabInstance: {fileID: 3164685464286854652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7789103297091438271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887098113144219038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isRun
+  - Type: 1
+    SynchronizeType: 0
+    Name: playerMove
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalk
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!95 &4527054018836442652 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -7694282261605592096, guid: 5dc2d934214166e4cb82bb890758b72a, type: 3}

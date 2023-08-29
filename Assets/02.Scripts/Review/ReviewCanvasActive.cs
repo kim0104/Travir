@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using PixelCrushers.DialogueSystem;
 
 public class ReviewCanvasActive : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class ReviewCanvasActive : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (DialogueManager.isConversationActive) // 대화가 진행 중인지 확인
+        {
+            return; // 대화 중이면 여기서 리턴
+        }
         if (!canvasShown && canInteract)
         {
             reviewCanvas.SetActive(true);
