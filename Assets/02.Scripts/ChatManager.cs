@@ -1,4 +1,4 @@
-/*using System.Collections;
+ï»¿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -17,7 +17,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     string m_strUserName;
 
-    //ÇÃ·¹ÀÌ¾îÀÇ ´Ğ³×ÀÓÀ» Àü´Ş¹ŞÀ½
+    //í”Œë ˆì´ì–´ì˜ ë‹‰ë„¤ì„ì„ ì „ë‹¬ë°›ìŒ
     public void SetPlayerName(string playerName)
     {
         m_strUserName = playerName;
@@ -51,7 +51,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        AddChatMessage(PhotonNetwork.LocalPlayer.NickName+"´ÔÀÌ ÀÔÀåÇÏ¿´½À´Ï´Ù.");
+        AddChatMessage(PhotonNetwork.LocalPlayer.NickName+"ë‹˜ì´ ì…ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
 
     public void OnEndEditEvent()
@@ -67,7 +67,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // »ç¿ëÀÚ°¡ ³ª°¥ ¶§ È£ÃâµÇ´Â ¸Ş¼­µå
+    // ì‚¬ìš©ìê°€ ë‚˜ê°ˆ ë•Œ í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
     public void OnLeaveButtonClicked()
     {
         if (PhotonNetwork.IsConnected)
@@ -76,10 +76,10 @@ public class ChatManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î°¡ ¹æÀ» ³ª°¬À» ¶§ È£ÃâµÇ´Â Äİ¹é
+    // í”Œë ˆì´ì–´ê°€ ë°©ì„ ë‚˜ê°”ì„ ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±
     public override void OnLeftRoom()
     {
-        AddChatMessage(m_strUserName + "´ÔÀÌ ³ª°¬½À´Ï´Ù.");
+        AddChatMessage(m_strUserName + "ë‹˜ì´ ë‚˜ê°”ìŠµë‹ˆë‹¤.");
     }
 
     void AddChatMessage(string message)
@@ -113,7 +113,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
     public InputField chatInput;
     private PhotonView chatPhotonView;
 
-    public GameObject itemsGameObject; // ¾ÆÀÌÅÛµéÀ» ´ã°í ÀÖ´Â °ÔÀÓ ¿ÀºêÁ§Æ®
+    public GameObject itemsGameObject; // ì•„ì´í…œë“¤ì„ ë‹´ê³  ìˆëŠ” ê²Œì„ ì˜¤ë¸Œì íŠ¸
 
 
     private void Awake()
@@ -125,14 +125,14 @@ public class ChatManager : MonoBehaviourPunCallbacks
     {
         chatInput.onEndEdit.AddListener(SendChatMessageOnEnter);
 
-        // itemsGameObject ÃÊ±âÈ­
-        itemsGameObject = GameObject.Find("Items (Drag Items Here)"); // ¿¹½Ã
+        // itemsGameObject ì´ˆê¸°í™”
+        itemsGameObject = GameObject.Find("Items (Drag Items Here)"); // ì˜ˆì‹œ
         if (itemsGameObject == null)
         {
             Debug.LogError("Items GameObject not found.");
         }
 
-        // ChatManager °ÔÀÓ ¿ÀºêÁ§Æ® È°¼ºÈ­
+        // ChatManager ê²Œì„ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         if (itemsGameObject != null)
         {
             itemsGameObject.SetActive(true);
@@ -167,14 +167,14 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log(newPlayer.NickName + "´ÔÀÌ ÀÔÀåÇÏ¼Ì½À´Ï´Ù.");
-        chatText.text += $"{newPlayer.NickName}´ÔÀÌ ÀÔÀåÇß½À´Ï´Ù.\n";
+        Debug.Log(newPlayer.NickName + "ë‹˜ì´ ì…ì¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
+        chatText.text += $"{newPlayer.NickName}ë‹˜ì´ ì…ì¥í–ˆìŠµë‹ˆë‹¤.\n";
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log(otherPlayer.NickName + "´ÔÀÌ ÅğÀåÇÏ¼Ì½À´Ï´Ù.");
-        chatText.text += $"{otherPlayer.NickName}´ÔÀÌ ÅğÀåÇß½À´Ï´Ù.\n";
+        Debug.Log(otherPlayer.NickName + "ë‹˜ì´ í‡´ì¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
+        chatText.text += $"{otherPlayer.NickName}ë‹˜ì´ í‡´ì¥í–ˆìŠµë‹ˆë‹¤.\n";
     }
 
 }*/
@@ -238,9 +238,9 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
         Content.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
-        // ½ºÅ©·ÑÀ» ¸Ç ¾Æ·¡·Î ÀÌµ¿
-        Canvas.ForceUpdateCanvases(); // Äµ¹ö½º ¾÷µ¥ÀÌÆ® °­Á¦ ½ÇÇà
-        Content.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f; // ½ºÅ©·Ñ À§Ä¡ Á¶Á¤
+        // ìŠ¤í¬ë¡¤ì„ ë§¨ ì•„ë˜ë¡œ ì´ë™
+        Canvas.ForceUpdateCanvases(); // ìº”ë²„ìŠ¤ ì—…ë°ì´íŠ¸ ê°•ì œ ì‹¤í–‰
+        Content.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f; // ìŠ¤í¬ë¡¤ ìœ„ì¹˜ ì¡°ì •
     }
 
 
@@ -252,11 +252,11 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     private IEnumerator EnableChatManagerCoroutine()
     {
-        yield return new WaitForSeconds(1f); // ¿¹½Ã·Î 1ÃÊ ´ë±â
+        yield return new WaitForSeconds(1f); // ì˜ˆì‹œë¡œ 1ì´ˆ ëŒ€ê¸°
 
         if (Content != null)
         {
-            Content.SetActive(true); // Content °ÔÀÓ ¿ÀºêÁ§Æ® È°¼ºÈ­
+            Content.SetActive(true); // Content ê²Œì„ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         }
         else
         {
@@ -283,7 +283,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     string PlayerNickName;
 
-    private bool enableContent = false; // Content È°¼ºÈ­ ¿©ºÎ¸¦ ³ªÅ¸³»´Â º¯¼ö
+    private bool enableContent = false; // Content í™œì„±í™” ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
 
 
     void Start()
@@ -291,11 +291,11 @@ public class ChatManager : MonoBehaviourPunCallbacks
         ChatText = Content.transform.GetChild(0).gameObject;
         photonview = GetComponent<PhotonView>();
 
-        // Content¸¦ È°¼ºÈ­ÇÕ´Ï´Ù.
+        // Contentë¥¼ í™œì„±í™”í•©ë‹ˆë‹¤.
         if (Content != null)
         {
             Content.SetActive(true);
-            enableContent = true; // Content°¡ È°¼ºÈ­µÇ¾úÀ½À» Ç¥½Ã
+            enableContent = true; // Contentê°€ í™œì„±í™”ë˜ì—ˆìŒì„ í‘œì‹œ
         }
         else
         {
@@ -329,7 +329,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     void AddChatMessage(string message)
     {
-        if (!enableContent) return; // Content°¡ È°¼ºÈ­µÇÁö ¾Ê¾Ò´Ù¸é ´õ ÀÌ»ó ÁøÇàÇÏÁö ¾Ê½À´Ï´Ù.
+        if (!enableContent) return; // Contentê°€ í™œì„±í™”ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ë” ì´ìƒ ì§„í–‰í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
         GameObject goText = Instantiate(ChatText, Content.transform);
         TextMeshProUGUI textMeshProUGUI = goText.GetComponent<TextMeshProUGUI>();
@@ -337,9 +337,9 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
         Content.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
-        // ½ºÅ©·ÑÀ» ¸Ç ¾Æ·¡·Î ÀÌµ¿
-        Canvas.ForceUpdateCanvases(); // Äµ¹ö½º ¾÷µ¥ÀÌÆ® °­Á¦ ½ÇÇà
-        Content.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f; // ½ºÅ©·Ñ À§Ä¡ Á¶Á¤
+        // ìŠ¤í¬ë¡¤ì„ ë§¨ ì•„ë˜ë¡œ ì´ë™
+        Canvas.ForceUpdateCanvases(); // ìº”ë²„ìŠ¤ ì—…ë°ì´íŠ¸ ê°•ì œ ì‹¤í–‰
+        Content.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f; // ìŠ¤í¬ë¡¤ ìœ„ì¹˜ ì¡°ì •
     }
 
 
@@ -386,7 +386,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        // InputField¿¡ Ä¿¼­°¡ ±ôºıÀÌ´Â µ¿¾È¿¡¸¸ PlayerController ºñÈ°¼ºÈ­
+        // InputFieldì— ì»¤ì„œê°€ ê¹œë¹¡ì´ëŠ” ë™ì•ˆì—ë§Œ PlayerController ë¹„í™œì„±í™”
         if (Input.GetKeyDown(KeyCode.Return) && !input.isFocused)
         {
             SendButtonOnClicked();
@@ -419,18 +419,18 @@ public class ChatManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ReceiveMsg(string msg)
     {
-        // 25±ÛÀÚ¸¶´Ù ÁÙ¹Ù²Ş ¹× ¾çÂÊ¿¡ °ø¹é Ãß°¡
+        // 25ê¸€ìë§ˆë‹¤ ì¤„ë°”ê¿ˆ ë° ì–‘ìª½ì— ê³µë°± ì¶”ê°€
         string formattedMessage = InsertLineBreaks(msg, 25, " ", " ");
         chatLog.text += "\n" + formattedMessage;
         
 
-        // ContentÀÇ Å©±â Á¶Àı
+        // Contentì˜ í¬ê¸° ì¡°ì ˆ
         LayoutRebuilder.ForceRebuildLayoutImmediate(scroll_rect.content);
 
         scroll_rect.verticalNormalizedPosition = 0.0f;
     }
 
-    // InsertLineBreaks ÇÔ¼ö¿¡¼­ ¾çÂÊ °ø¹é Ãß°¡
+    // InsertLineBreaks í•¨ìˆ˜ì—ì„œ ì–‘ìª½ ê³µë°± ì¶”ê°€
     string InsertLineBreaks(string input, int maxLength, string leftPadding, string rightPadding)
     {
         string result = "";
