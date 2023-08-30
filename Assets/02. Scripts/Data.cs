@@ -15,6 +15,12 @@ public static class Data
         Lottetower,
         Namsan,
         Gwanghwa,
-        Worldcup
+        Worldcup,
+        Jejuairport,
+        Museum,
+        Jeoli,
+        Seongsan,
+        Mandarin,
+        Hanra
     }
 }
