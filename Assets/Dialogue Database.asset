@@ -1238,7 +1238,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: 
         type: 0
         typeString: 
       - title: Response Menu Sequence
@@ -3304,7 +3304,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: 
         type: 0
         typeString: 
       - title: Response Menu Sequence
@@ -4261,8 +4261,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 699.9232, y: 185.13522}
-    canvasZoom: 0.7050003
+    canvasScrollPosition: {x: 18.261559, y: 0}
+    canvasZoom: 0.3570001
   syncInfo:
     syncActors: 0
     syncItems: 0
