@@ -117,11 +117,7 @@ public class LobbyManager :  MonoBehaviourPunCallbacks
     {
         base.OnPlayerEnteredRoom(newPlayer);
         ChatManager chatManager = FindObjectOfType<ChatManager>();
-        if (chatManager != null)
-        {
-            chatManager.OnPlayerEnteredRoom(newPlayer);
-        }
-        else
+        if (chatManager = null)
         {
             Debug.LogWarning("ChatManager not found.");
         }
@@ -133,12 +129,8 @@ public class LobbyManager :  MonoBehaviourPunCallbacks
     {
         base.OnPlayerLeftRoom(otherPlayer);
         ChatManager chatManager = FindObjectOfType<ChatManager>();
-        if (chatManager != null)
-        {
-            chatManager.OnPlayerLeftRoom(otherPlayer);
-        }
-        else
-        {
+        if (chatManager = null) { 
+        
             Debug.LogWarning("ChatManager not found.");
         }
     }

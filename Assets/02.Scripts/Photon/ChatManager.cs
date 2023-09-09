@@ -404,14 +404,14 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        string msg = string.Format("{0} has joined the room.", newPlayer.NickName);
+        string msg = string.Format("{0}님이 들어오셨습니다.", newPlayer.NickName);
         chatLog.text += "\n" + msg;
         scroll_rect.verticalNormalizedPosition = 0.0f;
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        string msg = string.Format("{0} has left the room.", otherPlayer.NickName);
+        string msg = string.Format("{0}님이 나가셨습니다.", otherPlayer.NickName);
         chatLog.text += "\n" + msg;
         scroll_rect.verticalNormalizedPosition = 0.0f;
     }
