@@ -14,11 +14,13 @@ public class ReviewCanvasActive : MonoBehaviour
     private bool canvasShown = false;
     private bool canInteract = true;
 
+    private PlayerController playerController;
+
     private void Start()
     {
         reviewCanvas.SetActive(false);
         closeButton.onClick.AddListener(CloseCanvas);
-
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void OnMouseUp()
@@ -35,7 +37,6 @@ public class ReviewCanvasActive : MonoBehaviour
             canvasShown = true;
             canInteract = false;
 
-            PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null)
             {
                 playerController.enabled = false; 
@@ -49,7 +50,7 @@ public class ReviewCanvasActive : MonoBehaviour
         canvasShown = false;
         canInteract = true;
 
-        PlayerController playerController = FindObjectOfType<PlayerController>();
+        
         if (playerController != null)
         {
             playerController.enabled = true; 
