@@ -146,6 +146,9 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 200
   jumpForce: 4
+  mouseSensitivity: 100
+  cameraTransform: {fileID: 0}
+  zoomSensitivity: 2
   animator: {fileID: 1066159369794683387}
 --- !u!54 &6985004077879740902
 Rigidbody:
