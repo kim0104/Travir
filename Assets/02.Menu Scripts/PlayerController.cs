@@ -32,6 +32,14 @@ public class PlayerController : MonoBehaviourPun
             defaultDistance = Vector3.Distance(transform.position, cameraTransform.position);
         }
     }
+    
+    void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     void FixedUpdate()
     {

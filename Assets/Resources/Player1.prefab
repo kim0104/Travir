@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4062003151685115200}
   - component: {fileID: 1204977430438262971}
   - component: {fileID: 3719527790426247393}
+  - component: {fileID: 2505078846769818467}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -146,10 +147,10 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 200
   jumpForce: 4
-  mouseSensitivity: 100
-  cameraTransform: {fileID: 0}
-  zoomSensitivity: 2
   animator: {fileID: 1066159369794683387}
+  mouseSensitivity: 100
+  zoomSensitivity: 2
+  cameraTransform: {fileID: 0}
 --- !u!54 &6985004077879740902
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 48e87c3473b6ec54c91c7937f2dcae4e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -276,7 +277,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.36
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -323,7 +324,19 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820370843819365644}
+  m_Enabled: 0
+--- !u!114 &2505078846769818467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820370843819365644}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd50b6c6279324f729c27d0c64133b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3975769095115764867
 GameObject:
   m_ObjectHideFlags: 0

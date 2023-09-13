@@ -1443,7 +1443,7 @@ MonoBehaviour:
   - "\uC548\uB155 ! \uC5EC\uAE30\uB294 \uD55C\uAD6D\uC758 \uC218\uB3C4, \uC11C\uC6B8! 
     \uC774 \uACF3\uC5D0\uC11C \uB2E4\uC591\uD55C \uB79C\uB4DC\uB9C8\uD06C\uB4E4\uC744
     \uAD6C\uACBD\uD574\uBD10!"
-  - "'M'\uD0A4\uB97C \uB20C\uB7EC \uB79C\uB4DC\uB9C8\uD06C\uB4E4\uC744 \uD655\uC778\uD560
+  - "'F1'\uD0A4\uB97C \uB20C\uB7EC \uD29C\uD1A0\uB9AC\uC5BC\uC744 \uD655\uC778\uD560
     \uC218 \uC788\uC5B4!"
   dialogues: []
   talkNum: 0
@@ -3105,7 +3105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1566.5151}
+  m_AnchoredPosition: {x: 0, y: 2146.7056}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &63903610
@@ -41972,7 +41972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seoulTr: {fileID: 1646698093}
   jejuTr: {fileID: 0}
-  networkManager: {fileID: 863802830}
 --- !u!4 &924416321
 Transform:
   m_ObjectHideFlags: 0
