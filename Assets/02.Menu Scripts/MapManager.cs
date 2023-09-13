@@ -8,41 +8,38 @@ public class MapManager : MonoBehaviour
 {
     public Transform seoulTr;
     public Transform jejuTr;
-    public NetworkManager networkManager;
 
-    // Start is called before the first frame update
     void Start()
     {
-        string characterName = FindObjectOfType<SelectorManager>().ItemSelected.gameObject.name;
-
-        switch (Data.spawnType)
+        GameObject currentPlayer = GetCurrentPlayerInstance();
+        if (currentPlayer != null)
         {
-            case Data.SpawnType.Seoul:
-                // if (networkManager != null)
-                // {
-                //     networkManager.enabled = false;
-                // }
-                // PhotonNetwork.Instantiate(characterName, seoulTr.position, Quaternion.identity);
-                break;
-            case Data.SpawnType.Jeju:
-                PhotonNetwork.Instantiate(characterName, jejuTr.position, Quaternion.identity);
-                break;
-            default:
-                break;
+            switch (Data.spawnType)
+            {
+                case Data.SpawnType.Seoul:
+                    currentPlayer.transform.position = seoulTr.position;
+                    break;
+                case Data.SpawnType.Jeju:
+                    currentPlayer.transform.position = jejuTr.position;
+                    break;
+                default:
+                    break; 
+            }
         }
     }
 
-    private string GetCurrentPlayerPrefabName()
+   private GameObject GetCurrentPlayerInstance()
     {
-        PlayerController[] allPlayers = FindObjectsOfType<PlayerController>();
-        foreach (var player in allPlayers)
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        foreach (var player in players)
         {
-            if (player.photonView.IsMine)
+            PhotonView pv = player.GetComponent<PhotonView>();
+            if (pv != null && pv.IsMine)
             {
-                Debug.Log("Found player's game object name: " + player.gameObject.name);
-                return player.gameObject.name;
+                return player.gameObject;
             }
         }
         return null;
     }
 }
+
