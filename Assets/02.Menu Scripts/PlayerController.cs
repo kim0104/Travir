@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviourPun
 
     public Animator animator;
 
-    public float mouseSensitivity = 100.0f;
-    public float zoomSensitivity = 2.0f;
+    public float mouseSensitivity = 200.0f;
+    public float zoomSensitivity = 15.0f;
     public Transform cameraTransform;
 
     private float yRotation = 0f;
@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviourPun
 
     void HandleMovement()
     {
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveVertical = Input.GetAxis("Vertical"); // 플레이어 상하이동
+        float moveHorizontal = Input.GetAxis("Horizontal"); // 플레이어 좌우이동
 
         float animationSpeed = 1;
 
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviourPun
             animationSpeed = 1;
         }
 
-        Vector3 movement = transform.forward * moveVertical * speed * animationSpeed;
+        Vector3 movement = transform.forward * moveVertical * speed * animationSpeed + transform.right * moveHorizontal * speed * animationSpeed;
         rb.MovePosition(rb.position + movement * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && !isJumping)
