@@ -28,4 +28,24 @@ public class MovedURL : MonoBehaviour
     {
         Application.OpenURL("https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=ad931739-fca3-4135-a878-cc7fb82920ba"); // 대한민국 구석구석_남산
     }
+
+    public void Greentea()
+    {
+        Application.OpenURL("https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b1469bd7-30b6-4e98-89cd-15bfd0087d54&big_category=A02&mid_category=A0202&big_area=39"); // 대한민국 구석구석_제주다원녹차미로공원
+    }
+
+     public void Jeoli()
+    {
+        Application.OpenURL("https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=561bfb31-e733-4901-8fbf-303b2fc844a1&big_category=A01&mid_category=A0101&big_area=39"); // 대한민국 구석구석_주상절리대
+    }
+
+    public void Seongsan()
+    {
+        Application.OpenURL("https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=f5da2334-1c8c-4049-8e06-4db38333a57f&big_category=A01&mid_category=A0101&big_area=39"); // 대한민국 구석구석_성산일출봉
+    }
+
+    public void Hanra()
+    {
+        Application.OpenURL("https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=a19d0844-ef85-4683-b794-dff88361acf3&big_category=A01&mid_category=A0101&big_area=39"); // 대한민국 구석구석_한라산
+    }
 }
