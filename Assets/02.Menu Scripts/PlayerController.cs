@@ -19,7 +19,13 @@ public class PlayerController : MonoBehaviourPun
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
     void FixedUpdate()
     {
         if (!photonView.IsMine) return;

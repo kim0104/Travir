@@ -22,7 +22,7 @@ public class NPCRotation : MonoBehaviourPunCallbacks
     public void SetPosition()
     {
         // Vector3 newPosition = new Vector3(271f, 13f, 137f); // 변경하고자 하는 새로운 위치 좌표
-        if (playerController != null)
+        if (playerController != null && photonView.IsMine)
         {
             playerController.enabled = false; 
         }
@@ -30,7 +30,7 @@ public class NPCRotation : MonoBehaviourPunCallbacks
 
     public void ResetPosition()
     {
-        if (playerController != null)
+        if (playerController != null && photonView.IsMine) 
         {
             playerController.enabled = true; 
         }
