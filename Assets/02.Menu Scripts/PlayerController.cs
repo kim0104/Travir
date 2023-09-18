@@ -56,15 +56,14 @@ public class PlayerController : MonoBehaviourPun
         float moveHorizontal = Input.GetAxis("Horizontal"); // 플레이어 좌우이동
 
         float animationSpeed = 1;
+        bool isWalking = false;
 
-        if (moveVertical != 0)
+        if (moveVertical != 0 || moveHorizontal != 0)
         {
-            animator.SetBool("isWalk", true);
+            isWalking = true;
         }
-        else
-        {
-            animator.SetBool("isWalk", false);
-        }
+
+        animator.SetBool("isWalk", isWalking);
 
         if (moveVertical < 0)
         {
@@ -96,7 +95,8 @@ public class PlayerController : MonoBehaviourPun
         }
     }
 
-    void HandleRotation()
+
+void HandleRotation()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
