@@ -12,58 +12,36 @@ public class PlayerController : MonoBehaviourPun
 
     public Animator animator;
 
-    public float mouseSensitivity = 200.0f;
-    public float zoomSensitivity = 15.0f;
-    public Transform cameraTransform;
-
-    private float yRotation = 0f;
-    private float xRotation = 0f;
-    private float defaultDistance = 5f; // you can adjust this initial value
-
     private bool isJumping = false;
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        if (cameraTransform != null)
-        {
-            defaultDistance = Vector3.Distance(transform.position, cameraTransform.position);
-        }
-    }
-    
-    void Awake()
-    {
-        if (photonView.IsMine)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
     }
 
     void FixedUpdate()
     {
         if (!photonView.IsMine) return;
 
-        HandleMovement();
-        HandleRotation();
-        HandleCameraZoom();
-    }
+        float moveVertical = Input.GetAxis("Vertical");
 
-    void HandleMovement()
-    {
-        float moveVertical = Input.GetAxis("Vertical"); // 플레이어 상하이동
-        float moveHorizontal = Input.GetAxis("Horizontal"); // 플레이어 좌우이동
 
-        float animationSpeed = 1;
-        bool isWalking = false;
+        float rotateHorizontal = Input.GetAxis("Horizontal");
 
-        if (moveVertical != 0 || moveHorizontal != 0)
+        #region  
+        float animationSpeed = 0;
+
+
+
+        if (rotateHorizontal != 0 || moveVertical != 0)
         {
-            isWalking = true;
+            animator.SetBool("isWalk", true);
         }
-
-        animator.SetBool("isWalk", isWalking);
+        else
+        {
+            animator.SetBool("isWalk", false);
+        }
 
         if (moveVertical < 0)
         {
@@ -85,45 +63,27 @@ public class PlayerController : MonoBehaviourPun
             animationSpeed = 1;
         }
 
-        Vector3 movement = transform.forward * moveVertical * speed * animationSpeed + transform.right * moveHorizontal * speed * animationSpeed;
+
+        #endregion
+
+
+        Vector3 movement = transform.forward * moveVertical * speed * animationSpeed;
         rb.MovePosition(rb.position + movement * Time.deltaTime);
+
+
+        Vector3 rotation = new Vector3(0, rotateHorizontal, 0) * rotationSpeed;
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation * Time.deltaTime));
+
 
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode.Impulse);
             isJumping = true;
         }
+
+
     }
 
-
-void HandleRotation()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        yRotation += mouseX;
-        xRotation -= mouseY;
-
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-
-        if (cameraTransform != null)
-        {
-            cameraTransform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        }
-    }
-
-    void HandleCameraZoom()
-    {
-        if (cameraTransform == null) return;
-
-        float mouseScroll = Input.GetAxis("Mouse ScrollWheel");
-        defaultDistance -= mouseScroll * zoomSensitivity;
-        defaultDistance = Mathf.Clamp(defaultDistance, 1f, 10f);
-
-        cameraTransform.position = transform.position - cameraTransform.forward * defaultDistance;
-    }
 
     void OnCollisionEnter(Collision collision)
     {
