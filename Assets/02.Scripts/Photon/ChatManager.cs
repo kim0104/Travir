@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class ChatManager : MonoBehaviourPunCallbacks
 {
@@ -56,14 +57,18 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        string msg = string.Format("{0}님이 들어오셨습니다.", newPlayer.NickName);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        string locationInKorean = GetLocationInKorean(currentSceneName);
+        string msg = string.Format("{0}님이 {1}에 들어오셨습니다.", newPlayer.NickName, locationInKorean);
         chatLog.text += "\n" + msg;
         scroll_rect.verticalNormalizedPosition = 0.0f;
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        string msg = string.Format("{0}님이 나가셨습니다.", otherPlayer.NickName);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        string locationInKorean = GetLocationInKorean(currentSceneName);
+        string msg = string.Format("{0}님이 {1}에서 나가셨습니다.", otherPlayer.NickName, locationInKorean);
         chatLog.text += "\n" + msg;
         scroll_rect.verticalNormalizedPosition = 0.0f;
     }
@@ -116,6 +121,19 @@ public class ChatManager : MonoBehaviourPunCallbacks
         {
             playerController.enabled = true; 
             menuPanel.enabled = true;
+        }
+    }
+
+    private string GetLocationInKorean(string sceneName)
+    {
+        switch(sceneName)
+        {
+            case "Jeju":
+                return "제주";
+            case "Seoul":
+                return "서울";
+            default:
+                return sceneName; 
         }
     }
 }

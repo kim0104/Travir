@@ -42,8 +42,6 @@ public class Tutorial_typing : MonoBehaviour
     public void EndTalk()
     {
         talkNum = 0;
-        Debug.Log("대사 끝");
-
         chatCanvas.enabled = true;
         dialogueCanvas.SetActive(false);
     }
