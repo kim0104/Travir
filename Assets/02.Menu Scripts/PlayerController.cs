@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerController : MonoBehaviourPun
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     public float speed = 5.0f;
     public float rotationSpeed = 200.0f;
@@ -15,17 +16,19 @@ public class PlayerController : MonoBehaviourPun
     private bool isJumping = false;
     private Rigidbody rb;
 
+    private int nextSceneLevel;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-    void Awake()
-    {
-        if (photonView.IsMine)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
+    // void Awake()
+    // {
+    //     if (photonView.IsMine)
+    //     {
+    //         DontDestroyOnLoad(this.gameObject);
+    //     }
+    // }
     void FixedUpdate()
     {
         if (!photonView.IsMine) return;
@@ -90,7 +93,6 @@ public class PlayerController : MonoBehaviourPun
 
     }
 
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -105,11 +107,11 @@ public class PlayerController : MonoBehaviourPun
                 break;
             case ("Jeju"):
                 Data.spawnType = Data.SpawnType.Jeju;
-                PhotonNetwork.LoadLevel(2);
+                RoomManager.Instance.ChangeToRoom(2);
                 break;
             case ("Seoul"):
                 Data.spawnType = Data.SpawnType.Seoul;
-                PhotonNetwork.LoadLevel(1);
+                RoomManager.Instance.ChangeToRoom(1);
                 break;
             default:
                 break;

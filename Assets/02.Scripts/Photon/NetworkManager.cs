@@ -8,16 +8,14 @@ using MalbersAnimations.Selector;
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class NetworkManager : MonoBehaviourPun
 {
-    private static bool hasInstantiated = false;
+    public Transform spawnPoint;
 
     void Start()
     {
-        if (!hasInstantiated && PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
-            string characterName = FindObjectOfType<SelectorManager>().ItemSelected.gameObject.name;
-            Transform spawnPoint = GameObject.Find("SpawnPoint").transform;
+            string characterName = PlayerInfoManager.Instance.CurrentPlayerInfo.CharacterName;
             PhotonNetwork.Instantiate(characterName, spawnPoint.position, Quaternion.identity);
-            hasInstantiated = true;
         }
     }
 }

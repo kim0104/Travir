@@ -4,6 +4,7 @@ using Photon.Pun; // 유니티용 포톤 컴포넌트들
 using Photon.Realtime; // 포톤 서비스 관련 라이브러리
 using UnityEngine;
 using UnityEngine.UI;
+using MalbersAnimations.Selector;
 
 // 마스터(매치 메이킹) 서버와 룸 접속을 담당
 public class LobbyManager :  MonoBehaviourPunCallbacks
@@ -59,11 +60,13 @@ public class LobbyManager :  MonoBehaviourPunCallbacks
         else
             PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
         // 마스터 서버에 접속중이라면
+        string characterName = FindObjectOfType<SelectorManager>().ItemSelected.gameObject.name;
+        PlayerInfoManager.Instance.SetPlayerInfo(PhotonNetwork.LocalPlayer.NickName, characterName);
         if (PhotonNetwork.IsConnected)
         {
             // 룸 접속 실행
             Debug.Log("룸에 접속...");
-            PhotonNetwork.JoinRandomRoom();
+            PhotonNetwork.JoinOrCreateRoom("1", new RoomOptions { MaxPlayers = 4 }, null);
         }
         else
         {
@@ -81,7 +84,7 @@ public class LobbyManager :  MonoBehaviourPunCallbacks
         // 접속 상태 표시
         Debug.Log("빈 방이 없음, 새로운 방 생성...");
         // 최대 4명을 수용 가능한 빈방을 생성
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+        PhotonNetwork.CreateRoom("1", new RoomOptions { MaxPlayers = 4 });
     }
 
     // 룸에 참가 완료된 경우 자동 실행
