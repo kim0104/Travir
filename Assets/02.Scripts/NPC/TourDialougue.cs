@@ -93,7 +93,7 @@ public class TourDialougue : MonoBehaviour
         }
 
         matchCountTitleAndURLs.Sort((x, y) => y.Item1.CompareTo(x.Item1));
-        for (int i = 0; i < 3 && i < matchCountTitleAndURLs.Count; i++)
+        for (int i = 0; i < 9 && i < matchCountTitleAndURLs.Count; i++)
         {
             Debug.Log("Title: " + matchCountTitleAndURLs[i].Item2);
             Debug.Log("URL: " + matchCountTitleAndURLs[i].Item3);
