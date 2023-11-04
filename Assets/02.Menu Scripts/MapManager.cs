@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-   private GameObject GetCurrentPlayerInstance()
+   public static GameObject GetCurrentPlayerInstance()
     {
         PlayerController[] players = FindObjectsOfType<PlayerController>();
         foreach (var player in players)
