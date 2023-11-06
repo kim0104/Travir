@@ -23,6 +23,7 @@ public class JejuMenuPanel : MonoBehaviour
     public Button settingscloseButton; // Settings Panel close
     public Button mapcloseButton; // Map Panel close
     public Button returnButton; // return to Settings Panel
+    private StopWatch StopWatch;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,8 @@ public class JejuMenuPanel : MonoBehaviour
         // Hide the settings panel at start
         settingsPanel.SetActive(false);
         mapPanel.SetActive(false);
+
+        StopWatch = FindObjectOfType<StopWatch>();
 
 
 
@@ -106,6 +109,7 @@ public class JejuMenuPanel : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player"); // Player 태그 된 플레이서 찾아서 참조
         jejuMapManager.ChangePlayerPosition(player);
         mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
     void OnMuseumClick()
@@ -113,7 +117,8 @@ public class JejuMenuPanel : MonoBehaviour
         Data.spawnType = Data.SpawnType.Museum;
         GameObject player = GameObject.FindGameObjectWithTag("Player"); 
         jejuMapManager.ChangePlayerPosition(player);
-        mapPanel.SetActive(false); ;
+        mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
     void OnJeoliClick()
@@ -122,6 +127,7 @@ public class JejuMenuPanel : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         jejuMapManager.ChangePlayerPosition(player);
         mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
     void OnSeongsanClick()
@@ -130,6 +136,7 @@ public class JejuMenuPanel : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player"); 
         jejuMapManager.ChangePlayerPosition(player);
         mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
     void OnMandarinClick()
@@ -138,6 +145,7 @@ public class JejuMenuPanel : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player"); 
         jejuMapManager.ChangePlayerPosition(player);
         mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
     void OnHanraClick()
@@ -146,6 +154,7 @@ public class JejuMenuPanel : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player"); 
         jejuMapManager.ChangePlayerPosition(player);
         mapPanel.SetActive(false);
+        StopWatch.ResetStopwatch();
     }
 
 

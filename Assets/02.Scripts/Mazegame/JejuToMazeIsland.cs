@@ -1,48 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
+
 
 public class JejuToMazeIsland : MonoBehaviour
 {
 
     public Button startButton;
     public Transform startingPoint;
-    public Transform goal;
-    Vector3 startButtonPosition = new Vector3(137, 30, 346);
+    public GameObject chatCanvas;
+    public GameObject startCanvas;
+    private StopWatch StopWatch;
+    private float activationStartTime;
+    private float duration = 2f;
 
     private void Start()
     {
+        StopWatch = FindObjectOfType<StopWatch>();
         startButton.onClick.AddListener(MovePlayerToStartingPoint);
+        startCanvas.SetActive(false);
 
     }
 
     private void Update()
     {
-        CheckIfPlayerReachedGoal();
-    }
-
-
-    private void CheckIfPlayerReachedGoal()
-    {
-        GameObject currentPlayer = MapManager.GetCurrentPlayerInstance();
-
-        if (currentPlayer != null)
+        if (startCanvas.activeSelf && Time.time - activationStartTime >= duration)
         {
-            // 현재 플레이어의 위치와 goal의 위치 사이의 거리를 비교
-            float distanceToGoal = Vector3.Distance(currentPlayer.transform.position, goal.position);
-
-            // 일정 거리 이하로 접근했을 때 동작을 수행
-            if (distanceToGoal < 1f)
-            {
-                MovePlayerToJejuMazePark();
-            }
+            // 활성화된 캔버스가 3초 이상 지난 경우 비활성화
+            startCanvas.SetActive(false);
         }
     }
 
 
-    private void MovePlayerToStartingPoint()
+
+    public void MovePlayerToStartingPoint()
     {
         GameObject currentPlayer = MapManager.GetCurrentPlayerInstance();
         
@@ -50,18 +40,12 @@ public class JejuToMazeIsland : MonoBehaviour
         {
             currentPlayer.transform.position = startingPoint.position;
             currentPlayer.transform.rotation = Quaternion.Euler(Vector3.zero);
+            chatCanvas.SetActive(false);
+            startCanvas.SetActive(true);
+            StopWatch.StartStopwatch();
+            activationStartTime = Time.time;
         }
     }
 
-    private void MovePlayerToJejuMazePark()
-    {
-        GameObject currentPlayer = MapManager.GetCurrentPlayerInstance();
-
-        if (currentPlayer != null)
-        {
-            currentPlayer.transform.position = startButtonPosition;
-            currentPlayer.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-
-    }
+    
 }
