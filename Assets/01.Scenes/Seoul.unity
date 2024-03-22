@@ -3105,8 +3105,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2958.9722}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3016.9912}
+  m_SizeDelta: {x: 0, y: 14}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &63903610
 MonoBehaviour:
@@ -23838,7 +23838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &500776395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24350,7 +24350,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -52040,9 +52040,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -7, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1132314301
 MonoBehaviour:
@@ -69805,10 +69805,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3584380234894399182, guid: 84b6a4791628649178a539610ae15435, type: 3}
   m_PrefabInstance: {fileID: 1561967537}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1561967540}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 349f3cf22ec9a42beb894f7e01384608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1561967540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3584380234894399168, guid: 84b6a4791628649178a539610ae15435, type: 3}
+  m_PrefabInstance: {fileID: 1561967537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1561967541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561967540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e27eacf4b827437a87eebc785aa8d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1564927147
@@ -70580,6 +70597,18 @@ MonoBehaviour:
         - m_Target: {fileID: 3494455061690345076}
           m_TargetAssemblyTypeName: CanvasWebviewLoader, Assembly-CSharp
           m_MethodName: OnExecute
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1561967541}
+          m_TargetAssemblyTypeName: SaveDialogueVariables, Assembly-CSharp
+          m_MethodName: SaveVariables
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -71937,10 +71966,10 @@ RectTransform:
   m_Father: {fileID: 63903607}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -7}
+  m_SizeDelta: {x: 0, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604233263
 MonoBehaviour:

@@ -324,6 +324,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: CustomFieldType_Text
+  - id: 18
+    fields:
+    - title: Name
+      value: title
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   conversations:
   - id: 1
     fields:
@@ -1521,7 +1535,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["result"] = Variable["link0"]
+      userScript: 'Variable["result"] = Variable["link0"];
+
+        Variable["title"]
+        = Variable["result0"];'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1576,7 +1593,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["result"] = Variable["link1"]
+      userScript: 'Variable["result"] = Variable["link1"];
+
+        Variable["title"]
+        = Variable["result"];'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1631,14 +1651,17 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["result"] = Variable["link2"]
+      userScript: 'Variable["result"] = Variable["link2"];
+
+        Variable["title"]
+        = Variable["result2"];'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1281.3611
-        y: 1391.0471
+        x: 1282.7656
+        y: 1392.4515
         width: 160
         height: 30
     - id: 43
@@ -1886,8 +1909,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1097.1287
-        y: 775.3153
+        x: 1094.3564
+        y: 722.64703
         width: 160
         height: 30
     - id: 49
@@ -1945,8 +1968,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1073.3867
-        y: 1466.4868
+        x: 1071.9822
+        y: 1465.0823
         width: 160
         height: 30
     - id: 50
@@ -2983,8 +3006,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 384.07373, y: 992.43054}
-    canvasZoom: 0.5724972
+    canvasScrollPosition: {x: 616.931, y: 1101.6246}
+    canvasZoom: 0.5255003
   - id: 2
     fields:
     - title: Title
