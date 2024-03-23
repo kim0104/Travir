@@ -2,7 +2,7 @@
 
 <img src="https://github.com/kim0104/Travir/assets/81177557/f0ae5acd-5bba-4223-8f0d-87497a6e3638" width="700" alt="TRAVIR 메인 이미지">
 
-## 서비스 소개
+## 📜 서비스 소개
 TRAVIR는 이러한 시대적 변화에 발맞춰, 사용자에게 가상 공간에서의 관광 체험과 맞춤형 관광지 추천을 제공하는 서비스입니다.
 
 ### 목표
@@ -10,30 +10,41 @@ TRAVIR는 이러한 시대적 변화에 발맞춰, 사용자에게 가상 공간
 - 기존에 사용자의 번거로운 여행지 검색 과정을 줄여주고 간단한 여행 키워드 선택을 통해 맞춤 여행지를 추천하여 원하는여행지를 쉽고 빠르게 결정
 
 
-## 개발환경
-- Tool  
-Unity  
-Photon  
-- DB
-Firebase  
-- Language  
-Python
-C#  
-- 협업  
-Notion  
-Github  
+## ⚙️ 개발환경
+|분류|기술 스택|
+|:---:|------|
+|**Framework**|<img src="https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white"> |
+|**Language**| <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">  <img src="https://img.shields.io/badge/-C%23-512BD4?style=for-the-badge&logo=Csharp&logoColor=white"> |
+|**Database**| <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/photon-004480?style=for-the-badge&logo=photon&logoColor=white">|
+|**Collaboration**| <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">|
 
-## 서비스 모델
+
+## ✔️ 서비스 모델
 <img width="600" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/9a71004a-06f2-413d-ab8b-09bfdd45415d">
 
 
-## 서비스 소개
-| **가상 관광지 체험** | **관광지 추천** | **리뷰 작성 및 열람** |
-|---------------------|-----------------|-----------------------|
-| ![가상 관광지 체험 이미지](https://github.com/kim0104/Travir/assets/81177557/37293056-161e-486c-9bd2-4a63a292ad95) 가상 관광지에서 다양한 랜드마크들을 탐방합니다. 이 곳에서 관광지를 추천받고 리뷰를 작성하는 등 다양한 컨텐츠를 즐길 수 있습니다.| ![사용자 맞춤형 관광지 추천 이미지](https://github.com/kim0104/Travir/assets/81177557/3e2ef17d-4c4d-4bee-8b6b-3e192a1c7b38)  | ![](이미지URL)        |
-| **실시간 상호작용** | **미니게임** |
-| ![실시간 사용자 상호작용 이미지](https://github.com/kim0104/Travir/assets/81177557/c6163d30-4edb-4566-82d7-caa91bd1c026) 가상관광지 내에서 다른 사용자들과 실시간으로 소통하고 상호작용할 수 있습니다.     | ![미니게임 이미지](https://github.com/kim0104/Travir/assets/81177557/7668fcb9-64c1-477e-855e-8879fe47a0ef)  랜드마크의 특징을 살린 미니게임을 즐길 수 있습니다.
-| 
+## 📌 주요 기능
+
+### 가상 관광지 체험
+<img width="536" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/db848e10-e9e1-4bc4-bf9c-396ee2264daa">  <br/>
+가상 관광지에서 다양한 랜드마크들을 탐방합니다. 이 곳에서 관광지를 추천받고 리뷰를 작성하는 등 다양한 컨텐츠를 즐길 수 있습니다.<br/>
+
+### NPC 관광지 추천
+<img width="542" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/c4e2e728-b668-41a5-ade5-45cd42da5aaf">  <br/>
+백호 NPC와의 대화를 통해 선택한 키워드에 기반한 관광지 추천을 받을 수 있으며, 결과는 Webview를 통해 확인할 수 있습니다.<br/>
+
+### 관광지 리뷰 작성 및 열람
+<img width="551" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/6480e803-45f9-4cb8-8148-9555b924a692">  <br/>
+적호 NPC를 통해 관광지 리뷰를 작성하고 조회할 수 있습니다.<br/>
+
+### 실시간 상호작용
+<img width="556" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/ab3013ed-a366-4264-817b-de501a5ca622">  <br/>
+가상관광지 내에서 다른 사용자들과 실시간으로 소통하고 상호작용할 수 있습니다.     <br/>
+
+
+### 미니게임
+<img width="557" alt="image" src="https://github.com/kim0104/Travir/assets/81177557/5cb3aa62-259f-42f9-89f6-9f110ac21316"><br/>
+랜드마크의 특징을 살린 미니게임을 즐길 수 있습니다.<br/>
 
 
 
@@ -41,7 +52,6 @@ Github
 | [김보정](https://github.com/kim0104)     | [박혜린](https://github.com/rachel0402)     |  [백승연](https://github.com/syes2) |   
 |:-----------------------------------:|:-----------------------------------:|:-----------------------------------:|
 | 역할 | 역할 | 역할 |
-      
 
 ### 영상
 **🎞 [시연영상](https://youtu.be/ZPw5HkSR_NU)**  
