@@ -1,4 +1,4 @@
-# 몰입형 관광 메타버스 TRAVIR
+# TRAVIR: 메타버스 기반 관광지 추천 서비스
 
 <img src="https://github.com/kim0104/Travir/assets/81177557/f0ae5acd-5bba-4223-8f0d-87497a6e3638" width="700" alt="TRAVIR 메인 이미지">
 
